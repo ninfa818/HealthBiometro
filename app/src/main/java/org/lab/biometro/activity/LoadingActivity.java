@@ -16,9 +16,7 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
 
         final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            AppUtil.showOtherActivity(this, SplashActivity.class, 0);
-        }, 1500);
+        handler.postDelayed(() -> AppUtil.showOtherActivity(this, SplashActivity.class, 0), 1500);
     }
 
 }

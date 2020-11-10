@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_back_privacy"
+    android:orientation="vertical"
+    tools:context=".activity.PrivacyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/title_privacy"/>
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_txt_margin"
+            android:src="@drawable/ic_close"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/NotoTextMedium"
+            android:text="@string/desc_privacy"
+            android:lineSpacingExtra="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="@color/white">
+
+        <android.widget.Button
+            android:id="@+id/btn_confirm"
+            android:layout_marginStart="@dimen/dimen_txt_margin"
+            android:layout_marginEnd="@dimen/dimen_txt_margin"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_back_border"
+            style="@style/NanumTextBold"
+            android:textSize="15sp"
+            android:textColor="@color/color_text_green"
+            android:text="@string/confirm"/>
+    </LinearLayout>
+</LinearLayout>

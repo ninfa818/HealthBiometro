@@ -1,8 +1,10 @@
-package org.lab.biometro;
+package org.lab.biometro.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import org.lab.biometro.R;
 
 public class MainActivity extends AppCompatActivity {
 

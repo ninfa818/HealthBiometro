@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:weightSum="4">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:background="@color/color_main"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextBold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="18dp"
+            android:textSize="24sp"
+            android:textColor="@color/color_text_green"
+            android:text="@string/finish" />
+
+        <ImageView
+            android:layout_marginTop="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_complete"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="32sp"
+            android:textColor="@color/black"
+            android:text="@string/enter_finish" />
+
+        <LinearLayout
+            android:layout_marginTop="85dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/NanumTextBold"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="@string/sample_id" />
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:layout_marginStart="4dp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/complete_desc1" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/NanumTextMedium"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/complete_desc2" />
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="@string/sample_email1" />
+
+        <TextView
+            style="@style/NanumTextMedium"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/complete_desc3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/btn_login"
+            android:layout_marginStart="@dimen/dimen_txt_margin"
+            android:layout_marginEnd="@dimen/dimen_txt_margin"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_back_border"
+            style="@style/NanumTextBold"
+            android:textSize="15sp"
+            android:textColor="@color/color_text_green"
+            android:text="@string/login"/>
+    </LinearLayout>
+</LinearLayout>

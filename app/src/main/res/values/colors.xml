@@ -10,5 +10,10 @@
 
     <color name="color_main">#2BBB9D</color>
     <color name="color_text_gray">#58585A</color>
+    <color name="color_text_green">#006D79</color>
     <color name="color_text_dark_gray">#333333</color>
+    <color name="color_button_border">#00A0B1</color>
+    <color name="color_divider">#D1D1D9</color>
+    <color name="color_back_privacy">#F1F1F9</color>
+    <color name="color_badge_red">#EC1A1A</color>
 </resources>

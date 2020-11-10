@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:weightSum="4">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:background="@color/color_main"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextBold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="18dp"
+            android:textSize="24sp"
+            android:textColor="@color/color_text_green"
+            android:text="@string/info_input" />
+
+        <LinearLayout
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail1" />
+
+            <TextView
+                style="@style/NanumTextBold"
+                android:layout_marginStart="4dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail2" />
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail4" />
+
+            <TextView
+                style="@style/NanumTextBold"
+                android:layout_marginStart="4dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail5" />
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/NanumTextBold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail7" />
+
+            <TextView
+                style="@style/NanumTextMedium"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/info_detail8" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:background="@drawable/txt_back_border">
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="textPersonName"
+                style="@style/NanumTextBold"
+                android:textColor="@color/black"
+                android:text="@string/sample_name"
+                android:hint="@string/hint_username"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="phone"
+                style="@style/NanumTextBold"
+                android:textColor="@color/black"
+                android:text="@string/sample_phone"
+                android:hint="@string/hint_phone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/txt_back_border">
+
+            <EditText
+                style="@style/NanumTextBold"
+                android:layout_marginStart="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:hint="@string/hint_email"/>
+
+            <TextView
+                android:id="@+id/lbl_verify"
+                style="@style/NanumTextMedium"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/color_text_green"
+                android:textSize="16sp"
+                android:text="@string/verify"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:background="@drawable/txt_back_border">
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="textPassword"
+                style="@style/NotoTextBold"
+                android:textColor="@color/black"
+                android:hint="@string/password"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="textPassword"
+                style="@style/NotoTextBold"
+                android:textColor="@color/black"
+                android:hint="@string/confirm_password"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:background="@drawable/txt_back_border">
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="textPersonName"
+                style="@style/NanumTextBold"
+                android:textColor="@color/black"
+                android:hint="@string/hint_product_name"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:inputType="phone"
+                style="@style/NanumTextBold"
+                android:textColor="@color/black"
+                android:hint="@string/hint_product_phone"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/btn_enter"
+            android:layout_marginStart="@dimen/dimen_txt_margin"
+            android:layout_marginEnd="@dimen/dimen_txt_margin"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_back_border"
+            style="@style/NanumTextBold"
+            android:textSize="15sp"
+            android:textColor="@color/color_text_green"
+            android:text="@string/enter"/>
+    </LinearLayout>
+</LinearLayout>

@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             alt_success.setOnClickAlertDialogListener(new OnClickAlertDialogListener() {
                 @Override
                 public void onClickConfirmButton() {
-
+                    AppUtil.showOtherActivity(LoginActivity.this, MainActivity.class, 0);
                 }
             });
             alt_success.show();

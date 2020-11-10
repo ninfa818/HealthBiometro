@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:weightSum="4">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/color_main"/>
+    </LinearLayout>
+
+    <TextView
+        style="@style/NanumTextBold"
+        android:layout_marginTop="28dp"
+        android:layout_marginStart="18dp"
+        android:textSize="24sp"
+        android:textColor="@color/color_text_green"
+        android:text="@string/title_agreement" />
+    
+    <LinearLayout
+        android:layout_marginTop="127dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            
+            <TextView
+                style="@style/NanumTextBold"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="@string/biometro_band" />
+
+            <TextView
+                android:layout_marginStart="4dp"
+                style="@style/NanumTextLight"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/agree_service" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            style="@style/NanumTextLight"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/agree_using" />
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/lbl_agreement"
+                style="@style/NanumTextBold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/serive_agree" />
+
+            <TextView
+                style="@style/NanumTextLight"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/and" />
+
+            <TextView
+                android:layout_marginStart="4dp"
+                style="@style/NanumTextBold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/agree_verify" />
+
+            <TextView
+                style="@style/NanumTextLight"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/agree_need" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <CheckBox
+        style="@style/NanumTextBold"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/color_main"
+        android:textSize="14sp"
+        android:text="@string/agree_all" />
+
+    <View
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider" />
+
+    <CheckBox
+        style="@style/NanumTextBold"
+        android:layout_marginStart="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/color_main"
+        android:checked="true"
+        android:textSize="14sp"
+        android:text="@string/agree_integration_user" />
+
+    <CheckBox
+        style="@style/NanumTextBold"
+        android:layout_marginStart="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/color_main"
+        android:textSize="14sp"
+        android:text="@string/agree_indivial_user" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <android.widget.Button
+        android:id="@+id/btn_start"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_marginBottom="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_back_border"
+        style="@style/NanumTextBold"
+        android:textSize="15sp"
+        android:textColor="@color/color_text_green"
+        android:text="@string/start"/>
+</LinearLayout>

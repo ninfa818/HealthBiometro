@@ -3,7 +3,6 @@ package org.lab.biometro.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,7 +13,9 @@ import org.lab.biometro.listener.OnClickAlertDialogListener;
 
 public class AlertOneDialog extends Dialog {
 
-    private String title, description, str_button;
+    private final String title;
+    private final String description;
+    private final String str_button;
 
     private TextView lbl_title, lbl_desc, lbl_button;
     private OnClickAlertDialogListener onClickAlertDialogListener;

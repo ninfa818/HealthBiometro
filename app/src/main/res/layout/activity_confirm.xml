@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activity.ConfirmActivity">
+
+    <ImageView
+        android:layout_marginTop="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_confirm_info" />
+
+    <TextView
+        style="@style/NanumTextBold"
+        android:layout_marginTop="45dp"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:text="@string/title_confirm" />
+
+    <TextView
+        style="@style/NanumTextLight"
+        android:layout_marginTop="50dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/verify_desc1" />
+
+    <TextView
+        style="@style/NanumTextLight"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/verify_desc2" />
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc3" />
+
+        <TextView
+            android:layout_marginStart="4dp"
+            style="@style/NanumTextLight"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc4" />
+
+        <TextView
+            android:layout_marginStart="4dp"
+            style="@style/NanumTextBold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc6" />
+
+        <TextView
+            style="@style/NanumTextLight"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc7" />
+
+        <TextView
+            android:layout_marginStart="4dp"
+            style="@style/NanumTextBold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc8" />
+
+        <TextView
+            style="@style/NanumTextLight"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/verify_desc9" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/NanumTextLight"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/verify_desc10" />
+
+    <TextView
+        style="@style/NanumTextLight"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/verify_desc11" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <android.widget.Button
+        android:id="@+id/btn_resend"
+        style="@style/NanumTextBold"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_marginBottom="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_back_border"
+        android:textSize="15sp"
+        android:textColor="@color/color_text_green"
+        android:text="@string/resend_email"/>
+</LinearLayout>
