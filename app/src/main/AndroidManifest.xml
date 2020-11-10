@@ -38,5 +38,17 @@
         <activity android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.ProfileActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ProductActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.SettingNotiActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.NotiDetailActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

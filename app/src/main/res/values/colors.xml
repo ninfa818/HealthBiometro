@@ -16,4 +16,7 @@
     <color name="color_divider">#D1D1D9</color>
     <color name="color_back_privacy">#F1F1F9</color>
     <color name="color_badge_red">#EC1A1A</color>
+    <color name="color_nav_inactive">#A1A1A9</color>
+    <color name="color_nav_active">#58585A</color>
+    <color name="color_text_light_gray">#999999</color>
 </resources>

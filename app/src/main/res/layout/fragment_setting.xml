@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_user_circle" />
+
+        <TextView
+            android:layout_marginStart="15dp"
+            style="@style/NanumTextBold"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:text="@string/sample_name" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.widget.Button
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                style="@style/NotoTextLight"
+                android:textColor="@color/color_text_green"
+                android:text="@string/band_connect"
+                android:textSize="11sp"
+                android:background="@drawable/btn_back_green"/>
+
+            <android.widget.Button
+                android:layout_marginTop="5dp"
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                style="@style/NotoTextLight"
+                android:textColor="@color/color_text_light_gray"
+                android:text="@string/gateway_connect"
+                android:textSize="11sp"
+                android:background="@drawable/btn_back_gray"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/color_back_privacy"/>
+
+    <LinearLayout
+        android:id="@+id/llt_profile"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:text="@string/my_info"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llt_product"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:text="@string/product_info"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/NanumTextBold"
+                android:textSize="18sp"
+                android:text="@string/danger_noti"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                style="@style/NanumTextLight"
+                android:textSize="12sp"
+                android:text="@string/danger_desc"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/ic_switch_thumb"
+            android:track="@drawable/ic_switch_track"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llt_notification"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:text="@string/notification"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:text="@string/app_version"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            style="@style/NanumTextLight"
+            android:textSize="16sp"
+            android:text="@string/sample_version"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

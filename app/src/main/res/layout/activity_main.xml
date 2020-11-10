@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
     <RelativeLayout
@@ -13,27 +14,61 @@
         android:elevation="2dp">
 
         <ImageView
+            android:id="@+id/img_toolbar_logo"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:src="@drawable/img_logo"
             android:layout_centerInParent="true"/>
 
         <TextView
+            android:id="@+id/lbl_toolbar_title"
             style="@style/NanumTextBold"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:text="@string/monitoring"
             android:layout_centerInParent="true"/>
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/img_toolbar_back"
+            android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arror_left" />
+
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar_noti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true">
 
             <ImageView
+                android:layout_marginStart="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_noti" />
+
+            <View
+                android:id="@+id/viw_toolbar_badge"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/view_circle_red"/>
         </RelativeLayout>
     </RelativeLayout>
 
+    <FrameLayout
+        android:id="@+id/frg_body"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@drawable/bottom_nav_text"
+        app:itemTextColor="@drawable/bottom_nav_text"/>
 </LinearLayout>

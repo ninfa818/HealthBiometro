@@ -25,7 +25,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:hint="@string/email"
-        android:text="sample@naver.com"
+        android:text="@string/sample_email"
         android:inputType="textEmailAddress"/>
 
     <EditText

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tool:context=".activity.SettingNotiActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arror_left" />
+
+        <TextView
+            android:id="@+id/lbl_toolbar_title"
+            style="@style/NanumTextBold"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/notification"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar_noti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_noti" />
+
+            <View
+                android:id="@+id/viw_toolbar_badge"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/view_circle_red"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lst_notification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
+</LinearLayout>

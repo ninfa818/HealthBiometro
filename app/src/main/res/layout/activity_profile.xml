@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tool:context=".activity.ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arror_left" />
+
+        <TextView
+            android:id="@+id/lbl_toolbar_title"
+            style="@style/NanumTextBold"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/my_info"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar_noti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_noti" />
+
+            <View
+                android:id="@+id/viw_toolbar_badge"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/view_circle_red"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="42dp"
+            android:src="@drawable/ic_user_circle" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_circle_edit"
+            android:layout_marginBottom="-5dp"
+            android:layout_marginEnd="-5dp"
+            android:layout_alignBottom="@id/civ_avatar"
+            android:layout_alignEnd="@id/civ_avatar"/>
+
+        <android.widget.Button
+            android:layout_width="86dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dimen_txt_margin"
+            android:layout_alignParentEnd="true"
+            style="@style/NotoTextLight"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_light_gray"
+            android:text="@string/logout"
+            android:background="@drawable/btn_back_gray_6"/>
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:layout_marginTop="18sp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:text="홍길동 님"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/civ_avatar"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/color_back_privacy"/>
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextLight"
+            android:textColor="@color/color_text_light_gray"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/txt_name"
+            style="@style/NanumTextBold"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:hint="@string/name"
+            android:text="@string/sample_name"
+            android:inputType="textPersonName"
+            android:background="@null"/>
+
+        <View
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_divider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextLight"
+            android:textColor="@color/color_text_light_gray"
+            android:text="@string/mobile" />
+
+        <EditText
+            android:id="@+id/txt_phone"
+            style="@style/NanumTextBold"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:hint="@string/name"
+            android:text="@string/sample_phone"
+            android:inputType="phone"
+            android:background="@null"/>
+
+        <View
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_divider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextLight"
+            android:textColor="@color/color_text_light_gray"
+            android:text="@string/profile_email" />
+
+        <EditText
+            android:id="@+id/txt_email"
+            style="@style/NanumTextBold"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:hint="@string/name"
+            android:text="@string/sample_email"
+            android:inputType="textEmailAddress"
+            android:background="@null"/>
+    </LinearLayout>
+</LinearLayout>

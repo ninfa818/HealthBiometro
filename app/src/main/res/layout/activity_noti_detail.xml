@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tool:context=".activity.NotiDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arror_left" />
+
+        <TextView
+            android:id="@+id/lbl_toolbar_title"
+            style="@style/NanumTextBold"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/notification"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar_noti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_noti" />
+
+            <View
+                android:id="@+id/viw_toolbar_badge"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/view_circle_red"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/NotoTextMedium"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="시스템점검안내"/>
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/NotoTextMedium"
+            android:textSize="14sp"
+            android:text="[안내]"
+            android:textColor="@color/color_text_light_gray"/>
+
+        <TextView
+            android:layout_marginStart="8dp"
+            style="@style/NanumTextLight"
+            android:textSize="14sp"
+            android:text="2020.09.04"
+            android:textColor="@color/color_text_light_gray"/>
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider" />
+
+    <LinearLayout
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/NotoTextLight"
+            android:textColor="@color/black"
+            android:text="안녕하세요. 스마트밴드 시스템 점검을 위해 다음 시간에는\n서비스가 정상적으로 이뤄지지 않을 수 있습니다.\n불편을 드려 대단히 죄송합니다."
+            android:textSize="13sp"
+            android:lineSpacingExtra="8dp"/>
+
+        <TextView
+            style="@style/NotoTextMedium"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="▷  점검시간"
+            android:textSize="14sp"
+            android:lineSpacingExtra="8dp"/>
+
+        <TextView
+            style="@style/NotoTextMedium"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="▷  2020년 8월 6일 04:00~04:15"
+            android:textSize="14sp"
+            android:lineSpacingExtra="8dp"/>
+
+        <TextView
+            style="@style/NotoTextLight"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="감사합니다.\n운영팀 드림"
+            android:textSize="13sp"
+            android:lineSpacingExtra="8dp"/>
+    </LinearLayout>
+
+</LinearLayout>
