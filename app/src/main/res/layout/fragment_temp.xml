@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_back_privacy"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_margin="@dimen/dimen_txt_margin"
+        style="@style/NanumTextBold"
+        android:textSize="18sp"
+        android:textColor="@color/color_text_green"
+        android:text="2020년 09월 22일(화)"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_txt_margin">
+
+        <TextView
+            style="@style/NanumTextBold"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="37.2 Cº" />
+
+        <TextView
+            style="@style/NanumTextLight"
+            android:layout_marginTop="4dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="오늘, 오전 0시 ~ 오후24시 까지" />
+
+        <org.lab.biometro.ui.LineTempChart
+            android:id="@+id/cht_temp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_txt_margin"
+        android:paddingTop="@dimen/dimen_txt_margin"
+        android:paddingStart="@dimen/dimen_txt_margin"
+        android:paddingEnd="@dimen/dimen_txt_margin"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <include layout="@layout/header_temp" />
+
+        <ListView
+            android:id="@+id/lst_temp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                style="@style/NanumTextLight"
+                android:textSize="10sp"
+                android:text="더보기"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

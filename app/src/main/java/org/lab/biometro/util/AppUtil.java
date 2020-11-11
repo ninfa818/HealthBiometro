@@ -9,6 +9,8 @@ import org.lab.biometro.R;
 
 public class AppUtil {
 
+    public static int pageIndex = 0;
+
     public static void showOtherActivity (Context context, Class<?> cls, int direction) {
         Intent myIntent = new Intent(context, cls);
         ActivityOptions options;
@@ -33,6 +35,14 @@ public class AppUtil {
 
     public static float sp2px(Context context, float spValue) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getResources().getDisplayMetrics());
+    }
+
+    public static int randomInRange(int min, int max) {
+        return min + (int)(Math.random() * (max - min + 1));
+    }
+
+    public static double randomInRange(Float min, Float max) {
+        return min + (Math.random() * (max - min + 1));
     }
 
 }

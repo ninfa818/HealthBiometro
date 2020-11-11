@@ -230,14 +230,28 @@ public class LineOxyChart extends View {
 //                continue;
 //            }
 
-            if (i == 0) {
-                mPaint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
-                currentTextX += proportionWidth;
+            if (xAxisBasisData.size() < 10) {
+                if (i == 0) {
+                    mPaint.setTextAlign(Paint.Align.LEFT);
+                    canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
+                    currentTextX += proportionWidth;
+                } else {
+                    mPaint.setTextAlign(Paint.Align.RIGHT);
+                    canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
+                    currentTextX += proportionWidth;
+                }
             } else {
-                mPaint.setTextAlign(Paint.Align.RIGHT);
-                canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
-                currentTextX += proportionWidth;
+                if (i == 0) {
+                    mPaint.setTextAlign(Paint.Align.LEFT);
+                    canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
+                    currentTextX += proportionWidth;
+                } else if (i % 6 == 0) {
+                    mPaint.setTextAlign(Paint.Align.RIGHT);
+                    canvas.drawText(xAxisBasisData.get(i).value, currentTextX, currentTextY, mPaint);
+                    currentTextX += proportionWidth;
+                } else {
+                    currentTextX += proportionWidth;
+                }
             }
         }
     }

@@ -98,6 +98,7 @@
                     android:layout_height="match_parent" />
 
                 <ImageView
+                    android:id="@+id/img_heart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_right_gray" />
@@ -179,6 +180,7 @@
                     android:layout_height="match_parent" />
 
                 <ImageView
+                    android:id="@+id/img_oxygen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_right_gray" />
@@ -261,6 +263,7 @@
                     android:layout_height="match_parent" />
 
                 <ImageView
+                    android:id="@+id/img_temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_right_gray" />

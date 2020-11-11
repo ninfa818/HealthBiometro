@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.ui.LineHeartChart;
 import org.lab.biometro.ui.LineOxyChart;
 import org.lab.biometro.ui.LineTempChart;
+import org.lab.biometro.util.AppUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,10 +28,26 @@ public class HomeFragment extends Fragment {
     private LineHeartChart cht_heart;
     private LineOxyChart cht_oxy;
     private LineTempChart cht_temp;
+    private ImageView img_heart, img_oxygen, img_temp;
 
 
     public HomeFragment(MainActivity activity) {
         this.activity = activity;
+    }
+
+    private void initEvent() {
+        img_heart.setOnClickListener(view -> {
+            AppUtil.pageIndex = 0;
+            activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
+        });
+        img_oxygen.setOnClickListener(view -> {
+            AppUtil.pageIndex = 1;
+            activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
+        });
+        img_temp.setOnClickListener(view -> {
+            AppUtil.pageIndex = 2;
+            activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
+        });
     }
 
     @Nullable
@@ -37,6 +55,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragment = inflater.inflate(R.layout.fragment_home, container, false);
         initView(fragment);
+        initEvent();
         return fragment;
     }
 
@@ -49,6 +68,10 @@ public class HomeFragment extends Fragment {
 
         cht_temp = fragment.findViewById(R.id.cht_temp);
         initTempData();
+
+        img_heart = fragment.findViewById(R.id.img_heart);
+        img_oxygen = fragment.findViewById(R.id.img_oxygen);
+        img_temp = fragment.findViewById(R.id.img_temp);
     }
 
     private void initHeartData() {

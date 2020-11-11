@@ -20,10 +20,11 @@ import org.lab.biometro.R;
 import org.lab.biometro.fragment.HomeFragment;
 import org.lab.biometro.fragment.MonitorFragment;
 import org.lab.biometro.fragment.SettingFragment;
+import org.lab.biometro.util.AppUtil;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private BottomNavigationView nav_bottom;
+    public BottomNavigationView nav_bottom;
     private ImageView img_toolbar_back, img_toolbar_logo;
     private View viw_toolbar_badge;
     private TextView lbl_toolbar_title;
@@ -104,12 +105,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
+                AppUtil.pageIndex = 0;
                 loadFragmentByIndex(0);
                 break;
             case R.id.navigation_monitor:
                 loadFragmentByIndex(1);
                 break;
             case R.id.navigation_setting:
+                AppUtil.pageIndex = 0;
                 loadFragmentByIndex(2);
                 break;
         }

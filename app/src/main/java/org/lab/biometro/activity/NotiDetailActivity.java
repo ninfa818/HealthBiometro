@@ -1,6 +1,7 @@
 package org.lab.biometro.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -42,4 +43,7 @@ public class NotiDetailActivity extends AppCompatActivity {
 
     }
 
+    public void onClickListButton(View view) {
+        onBackPressed();
+    }
 }
