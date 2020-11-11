@@ -67,7 +67,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bottom"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="?attr/actionBarSize"
         app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@drawable/bottom_nav_text"
         app:itemTextColor="@drawable/bottom_nav_text"/>

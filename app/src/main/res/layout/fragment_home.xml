@@ -1,9 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_user_circle" />
+
+        <TextView
+            android:layout_marginStart="15dp"
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/sample_name" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.widget.Button
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                style="@style/NotoTextLight"
+                android:textColor="@color/color_text_green"
+                android:text="@string/band_connect"
+                android:textSize="11sp"
+                android:background="@drawable/btn_back_green"/>
+
+            <android.widget.Button
+                android:layout_marginTop="5dp"
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                style="@style/NotoTextLight"
+                android:textColor="@color/color_text_light_gray"
+                android:text="@string/gateway_connect"
+                android:textSize="11sp"
+                android:background="@drawable/btn_back_gray"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/NanumTextBold"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="이번주" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white" >
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/NanumTextBold"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_text_green"
+                    android:text="맥박"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_right_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <org.lab.biometro.ui.LineHeartChart
+                    android:id="@+id/cht_heart"
+                    android:layout_width="0dp"
+                    android:layout_weight="235"
+                    android:layout_height="match_parent"
+                    tools:ignore="NestedWeights" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="120"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home_heart" />
+
+                    <TextView
+                        style="@style/NanumTextBold"
+                        android:layout_marginTop="7dp"
+                        android:textSize="28sp"
+                        android:textColor="@color/black"
+                        android:text="107" />
+
+                    <TextView
+                        style="@style/NanumTextLight"
+                        android:textSize="12sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="bpm" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white" >
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/NanumTextBold"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_text_green"
+                    android:text="산소포화도"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_right_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <org.lab.biometro.ui.LineOxyChart
+                    android:id="@+id/cht_oxy"
+                    android:layout_width="0dp"
+                    android:layout_weight="235"
+                    android:layout_height="match_parent"
+                    tools:ignore="NestedWeights" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="120"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home_o2" />
+
+                    <TextView
+                        style="@style/NanumTextBold"
+                        android:layout_marginTop="7dp"
+                        android:textSize="28sp"
+                        android:textColor="@color/black"
+                        android:text="100" />
+
+                    <TextView
+                        style="@style/NanumTextLight"
+                        android:textSize="12sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="%" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/dimen_txt_margin"
+        android:layout_marginEnd="@dimen/dimen_txt_margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white" >
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/NanumTextBold"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_text_green"
+                    android:text="체온"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_right_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <org.lab.biometro.ui.LineTempChart
+                    android:id="@+id/cht_temp"
+                    android:layout_width="0dp"
+                    android:layout_weight="235"
+                    android:layout_height="match_parent"
+                    tools:ignore="NestedWeights" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="120"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home_temperature" />
+
+                    <TextView
+                        style="@style/NanumTextBold"
+                        android:layout_marginTop="7dp"
+                        android:textSize="28sp"
+                        android:textColor="@color/black"
+                        android:text="37.2" />
+
+                    <TextView
+                        style="@style/NanumTextLight"
+                        android:textSize="12sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="Cº" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

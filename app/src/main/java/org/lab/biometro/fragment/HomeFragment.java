@@ -11,10 +11,22 @@ import androidx.fragment.app.Fragment;
 
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
+import org.lab.biometro.ui.LineHeartChart;
+import org.lab.biometro.ui.LineOxyChart;
+import org.lab.biometro.ui.LineTempChart;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
     private final MainActivity activity;
+
+    private LineHeartChart cht_heart;
+    private LineOxyChart cht_oxy;
+    private LineTempChart cht_temp;
+
 
     public HomeFragment(MainActivity activity) {
         this.activity = activity;
@@ -29,7 +41,105 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View fragment) {
+        cht_heart = fragment.findViewById(R.id.cht_heart);
+        initHeartData();
 
+        cht_oxy = fragment.findViewById(R.id.cht_oxy);
+        initOxygenData();
+
+        cht_temp = fragment.findViewById(R.id.cht_temp);
+        initTempData();
     }
+
+    private void initHeartData() {
+        final List<LineHeartChart.Data<String>> list = new LinkedList<>();
+        list.add(new LineHeartChart.Data<>("9.20"));
+        list.add(new LineHeartChart.Data<>("21"));
+        list.add(new LineHeartChart.Data<>("22"));
+        list.add(new LineHeartChart.Data<>("23"));
+        list.add(new LineHeartChart.Data<>("24"));
+        list.add(new LineHeartChart.Data<>("25"));
+        list.add(new LineHeartChart.Data<>("9.26"));
+        try {
+            cht_heart.setXAxisBasisData(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        final List<LineHeartChart.Data<Float[]>> data = new LinkedList<>();
+        data.add(new LineHeartChart.Data<>(new Float[]{61f, 102f}, "9.20", String.format(Locale.getDefault(), "%.0f", 81f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{72f, 120f}, "21", String.format(Locale.getDefault(), "%.0f", 96f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{80f, 125f}, "22", String.format(Locale.getDefault(), "%.0f", 102f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{90f, 135f}, "23", String.format(Locale.getDefault(), "%.0f", 112f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{59f, 115f}, "24", String.format(Locale.getDefault(), "%.0f", 87f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{65f, 90f}, "25", String.format(Locale.getDefault(), "%.0f", 77f)));
+        data.add(new LineHeartChart.Data<>(new Float[]{75f, 125f}, "9.26", String.format(Locale.getDefault(), "%.0f", 100f)));
+        try {
+            cht_heart.setData(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initOxygenData() {
+        final List<LineOxyChart.Data<String>> list = new LinkedList<>();
+        list.add(new LineOxyChart.Data<>("9.20"));
+        list.add(new LineOxyChart.Data<>("21"));
+        list.add(new LineOxyChart.Data<>("22"));
+        list.add(new LineOxyChart.Data<>("23"));
+        list.add(new LineOxyChart.Data<>("24"));
+        list.add(new LineOxyChart.Data<>("25"));
+        list.add(new LineOxyChart.Data<>("9.26"));
+        try {
+            cht_oxy.setXAxisBasisData(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        final List<LineOxyChart.Data<Float>> data = new LinkedList<>();
+        data.add(new LineOxyChart.Data<>(99f, "9.20"));
+        data.add(new LineOxyChart.Data<>(100f, "21"));
+        data.add(new LineOxyChart.Data<>(98f, "22"));
+        data.add(new LineOxyChart.Data<>(97f, "23"));
+        data.add(new LineOxyChart.Data<>(98f, "24"));
+        data.add(new LineOxyChart.Data<>(99f, "25"));
+        data.add(new LineOxyChart.Data<>(100f, "9.26"));
+        try {
+            cht_oxy.setData(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initTempData() {
+        final List<LineTempChart.Data<String>> list = new LinkedList<>();
+        list.add(new LineTempChart.Data<>("9.20"));
+        list.add(new LineTempChart.Data<>("21"));
+        list.add(new LineTempChart.Data<>("22"));
+        list.add(new LineTempChart.Data<>("23"));
+        list.add(new LineTempChart.Data<>("24"));
+        list.add(new LineTempChart.Data<>("25"));
+        list.add(new LineTempChart.Data<>("9.26"));
+        try {
+            cht_temp.setXAxisBasisData(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        final List<LineTempChart.Data<Float>> data = new LinkedList<>();
+        data.add(new LineTempChart.Data<>(36.0f, "9.20"));
+        data.add(new LineTempChart.Data<>(36.5f, "21"));
+        data.add(new LineTempChart.Data<>(37.2f, "22"));
+        data.add(new LineTempChart.Data<>(36.3f, "23"));
+        data.add(new LineTempChart.Data<>(36.9f, "24"));
+        data.add(new LineTempChart.Data<>(36.5f, "25"));
+        data.add(new LineTempChart.Data<>(37.2f, "9.26"));
+        try {
+            cht_temp.setData(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
