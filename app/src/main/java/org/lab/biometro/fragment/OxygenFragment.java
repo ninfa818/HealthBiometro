@@ -14,8 +14,6 @@ import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.OxygenAdapter;
 import org.lab.biometro.model.OxygenModel;
-import org.lab.biometro.model.OxygenModel;
-import org.lab.biometro.ui.LineHeartChart;
 import org.lab.biometro.ui.LineOxyChart;
 import org.lab.biometro.util.AppUtil;
 
@@ -82,37 +80,11 @@ public class OxygenFragment extends Fragment {
     private void initListData() {
         models.clear();
 
-        OxygenModel model1 = new OxygenModel();
-        model1.time = "22:00:00";
-        model1.value = 99;
-
-        OxygenModel model2 = new OxygenModel();
-        model2.time = "15:00:00";
-        model2.value = 100;
-
-        OxygenModel model3 = new OxygenModel();
-        model3.time = "15:00:00";
-        model3.value = 98;
-
-        OxygenModel model4 = new OxygenModel();
-        model4.time = "15:00:00";
-        model4.value = 95;
-
-        OxygenModel model5 = new OxygenModel();
-        model5.time = "15:00:00";
-        model5.value = 97;
-
-        OxygenModel model6 = new OxygenModel();
-        model6.time = "15:00:00";
-        model6.value = 100;
-
-        models.add(model1);
-        models.add(model2);
-        models.add(model3);
-        models.add(model4);
-        models.add(model5);
-        for (int i = 0; i < 10; i++) {
-            models.add(model6);
+        for (int i = 0; i < 24; i++) {
+            OxygenModel model = new OxygenModel();
+            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
+            model.value = AppUtil.randomInRange(90, 100);
+            models.add(model);
         }
 
         oxygenAdapter.notifyDataSetChanged();

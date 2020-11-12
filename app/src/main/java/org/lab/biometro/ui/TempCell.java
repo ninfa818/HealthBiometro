@@ -9,6 +9,8 @@ import org.lab.biometro.R;
 import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.model.TempModel;
 
+import java.util.Locale;
+
 public class TempCell extends LinearLayout {
 
     private TempModel model;
@@ -33,7 +35,7 @@ public class TempCell extends LinearLayout {
 
     private void initView() {
         lbl_time.setText(model.time);
-        lbl_value.setText(String.valueOf(model.value));
+        lbl_value.setText(String.format(Locale.getDefault(), "%.1f", model.value));
     }
 
 }

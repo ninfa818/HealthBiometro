@@ -9,11 +9,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.tabs.TabLayout;
 
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
@@ -87,37 +82,11 @@ public class HeartFragment extends Fragment {
     private void initListData() {
         models.clear();
 
-        HeartModel model1 = new HeartModel();
-        model1.time = "22:00:00";
-        model1.value = 118;
-
-        HeartModel model2 = new HeartModel();
-        model2.time = "15:00:00";
-        model2.value = 65;
-
-        HeartModel model3 = new HeartModel();
-        model3.time = "15:00:00";
-        model3.value = 108;
-
-        HeartModel model4 = new HeartModel();
-        model4.time = "15:00:00";
-        model4.value = 70;
-
-        HeartModel model5 = new HeartModel();
-        model5.time = "15:00:00";
-        model5.value = 61;
-
-        HeartModel model6 = new HeartModel();
-        model6.time = "15:00:00";
-        model6.value = 100;
-
-        models.add(model1);
-        models.add(model2);
-        models.add(model3);
-        models.add(model4);
-        models.add(model5);
-        for (int i = 0; i < 10; i++) {
-            models.add(model6);
+        for (int i = 0; i < 24; i++) {
+            HeartModel model = new HeartModel();
+            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
+            model.value = AppUtil.randomInRange(70, 130);
+            models.add(model);
         }
 
         heartAdapter.notifyDataSetChanged();

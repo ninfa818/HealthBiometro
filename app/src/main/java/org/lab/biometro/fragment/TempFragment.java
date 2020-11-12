@@ -80,37 +80,11 @@ public class TempFragment extends Fragment {
     private void initListData() {
         models.clear();
 
-        TempModel model1 = new TempModel();
-        model1.time = "22:00:00";
-        model1.value = 99;
-
-        TempModel model2 = new TempModel();
-        model2.time = "15:00:00";
-        model2.value = 100;
-
-        TempModel model3 = new TempModel();
-        model3.time = "15:00:00";
-        model3.value = 98;
-
-        TempModel model4 = new TempModel();
-        model4.time = "15:00:00";
-        model4.value = 95;
-
-        TempModel model5 = new TempModel();
-        model5.time = "15:00:00";
-        model5.value = 97;
-
-        TempModel model6 = new TempModel();
-        model6.time = "15:00:00";
-        model6.value = 100;
-
-        models.add(model1);
-        models.add(model2);
-        models.add(model3);
-        models.add(model4);
-        models.add(model5);
-        for (int i = 0; i < 10; i++) {
-            models.add(model6);
+        for (int i = 0; i < 24; i++) {
+            TempModel model = new TempModel();
+            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
+            model.value = AppUtil.randomInRange(36.0f, 39.5f);
+            models.add(model);
         }
 
         tempAdapter.notifyDataSetChanged();
