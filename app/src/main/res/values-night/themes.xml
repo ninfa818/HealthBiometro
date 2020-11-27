@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Biometro" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/color_main</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="TextTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="NanumTextBold" parent="TextTheme">
+        <item name="fontFamily">@font/nanum_bold</item>
+    </style>
+
+    <style name="NanumTextMedium" parent="TextTheme">
+        <item name="fontFamily">@font/nanum_medium</item>
+    </style>
+
+    <style name="NanumTextLight" parent="TextTheme">
+        <item name="fontFamily">@font/nanum_light</item>
+    </style>
+
+    <style name="NotoTextBold" parent="TextTheme">
+        <item name="fontFamily">@font/notosans_bold</item>
+    </style>
+
+    <style name="NotoTextMedium" parent="TextTheme">
+        <item name="fontFamily">@font/notosans_medium</item>
+    </style>
+
+    <style name="NotoTextLight" parent="TextTheme">
+        <item name="fontFamily">@font/notosans_light</item>
+    </style>
+</resources>

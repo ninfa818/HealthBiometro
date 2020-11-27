@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -119,6 +120,7 @@
                 android:background="@drawable/txt_back_border">
 
                 <EditText
+                    android:id="@+id/txt_name"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
@@ -129,7 +131,6 @@
                     android:inputType="textPersonName"
                     style="@style/NanumTextBold"
                     android:textColor="@color/black"
-                    android:text="@string/sample_name"
                     android:hint="@string/hint_username"/>
 
                 <View
@@ -138,6 +139,7 @@
                     android:background="@color/color_divider" />
 
                 <EditText
+                    android:id="@+id/txt_phone"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
@@ -148,7 +150,6 @@
                     android:inputType="phone"
                     style="@style/NanumTextBold"
                     android:textColor="@color/black"
-                    android:text="@string/sample_phone"
                     android:hint="@string/hint_phone"/>
             </LinearLayout>
 
@@ -161,6 +162,7 @@
                 android:background="@drawable/txt_back_border">
 
                 <EditText
+                    android:id="@+id/txt_email"
                     style="@style/NanumTextBold"
                     android:layout_marginStart="20dp"
                     android:layout_width="0dp"
@@ -191,6 +193,7 @@
                 android:background="@drawable/txt_back_border">
 
                 <EditText
+                    android:id="@+id/txt_password"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
@@ -209,6 +212,7 @@
                     android:background="@color/color_divider" />
 
                 <EditText
+                    android:id="@+id/txt_repass"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
@@ -232,6 +236,7 @@
                 android:background="@drawable/txt_back_border">
 
                 <EditText
+                    android:id="@+id/txt_pro_name"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
@@ -250,6 +255,7 @@
                     android:background="@color/color_divider" />
 
                 <EditText
+                    android:id="@+id/txt_pro_phone"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"

@@ -99,4 +99,14 @@
     <string name="profile_email">이메일 주소</string>
     <string name="product_title">보호자 정보</string>
     <string name="to_list">목록으로</string>
+    <string name="no_name">이름을 입력하세요.</string>
+    <string name="alt_connect_server">서버접속중...</string>
+    <string name="success_register">회원가입성공!!!</string>
+    <string name="failed_register">중복되는 아이디를 입력하였습니다.</string>
+    <string name="no_pro_phone">보호자정보를 입력하세요.</string>
+    <string name="no_pro_name">보호자정보를 입력하세요.</string>
+    <string name="no_match">암호확인...</string>
+    <string name="no_pass">암호를 확인하세요.</string>
+    <string name="no_email">이메일을 입력하세요.</string>
+    <string name="no_phone">핸드폰을 입력하세요.</string>
 </resources>

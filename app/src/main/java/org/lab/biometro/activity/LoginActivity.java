@@ -1,19 +1,31 @@
 package org.lab.biometro.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.dialog.AlertOneDialog;
 import org.lab.biometro.listener.OnClickAlertDialogListener;
+import org.lab.biometro.listener.OnHttpListener;
 import org.lab.biometro.util.AppUtil;
+import org.lab.biometro.util.HttpUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private View content;
+    private ProgressDialog dialog;
     private EditText txt_email, txt_pass;
 
     @Override
@@ -25,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        content = findViewById(R.id.content);
+        dialog = ProgressDialog.show(this, "", getString(R.string.alt_connect_server));
+        dialog.dismiss();
+
         txt_email = findViewById(R.id.txt_email);
         txt_pass = findViewById(R.id.txt_password);
     }
@@ -33,32 +49,55 @@ public class LoginActivity extends AppCompatActivity {
         String email = txt_email.getText().toString();
         String password = txt_pass.getText().toString();
         if (email.isEmpty()) {
-            Toast.makeText(this, R.string.toast_empty_email, Toast.LENGTH_SHORT).show();
+            Snackbar.make(content, R.string.toast_empty_email, BaseTransientBottomBar.LENGTH_SHORT).show();
             return;
         }
         if (password.isEmpty()) {
-            Toast.makeText(this, R.string.toast_empty_pass, Toast.LENGTH_SHORT).show();
+            Snackbar.make(content, R.string.toast_empty_pass, BaseTransientBottomBar.LENGTH_SHORT).show();
             return;
         }
-        if (email.equals("sample@naver.com") && password.equals("123456")) {
-            AlertOneDialog alt_success = new AlertOneDialog(this
-                    , getString(R.string.login_success)
-                    , getString(R.string.login_success_desc)
-                    , getString(R.string.confirm));
-            alt_success.setOnClickAlertDialogListener(new OnClickAlertDialogListener() {
-                @Override
-                public void onClickConfirmButton() {
-                    AppUtil.showOtherActivity(LoginActivity.this, MainActivity.class, 0);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("account", email);
+        params.put("pwd", password);
+        dialog.show();
+        HttpUtil.onHttpRequest(HttpUtil.url_login, params, new OnHttpListener() {
+            @Override
+            public void onEventCallBack(JSONObject obj, int ret) {
+                dialog.dismiss();
+                if (ret == 1) {
+                    AlertOneDialog alt_success = new AlertOneDialog(LoginActivity.this
+                            , getString(R.string.login_success)
+                            , getString(R.string.login_success_desc)
+                            , getString(R.string.confirm));
+                    alt_success.setOnClickAlertDialogListener(new OnClickAlertDialogListener() {
+                        @Override
+                        public void onClickConfirmButton() {
+                            AppUtil.showOtherActivity(LoginActivity.this, MainActivity.class, 0);
+                        }
+                    });
+                    alt_success.show();
+                } else {
+                    AlertOneDialog alt_failed = new AlertOneDialog(LoginActivity.this
+                            , getString(R.string.login_failed)
+                            , getString(R.string.login_failed_desc)
+                            , getString(R.string.confirm));
+                    alt_failed.show();
                 }
-            });
-            alt_success.show();
-        } else {
-            AlertOneDialog alt_failed = new AlertOneDialog(this
-                    , getString(R.string.login_failed)
-                    , getString(R.string.login_failed_desc)
-                    , getString(R.string.confirm));
-            alt_failed.show();
-        }
+            }
+
+            @Override
+            public void onEventInternetError(Exception e) {
+                dialog.dismiss();
+                Snackbar.make(content, Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onEventServerError(Exception e) {
+                dialog.dismiss();
+                Snackbar.make(content, Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onClickRegisterLbl(View view) {
