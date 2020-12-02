@@ -17,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.fragment.HomeFragment;
@@ -24,6 +26,7 @@ import org.lab.biometro.fragment.MonitorFragment;
 import org.lab.biometro.fragment.SettingFragment;
 import org.lab.biometro.listener.OnGetUserInfo;
 import org.lab.biometro.listener.OnHttpListener;
+import org.lab.biometro.model.UserModel;
 import org.lab.biometro.util.AppUtil;
 import org.lab.biometro.util.HttpUtil;
 import org.lab.biometro.util.SharedPreferenceUtil;
@@ -62,57 +65,44 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", "Bearer " + SharedPreferenceUtil.getToken());
 
+        Map<String, String> params = new HashMap<>();
+        params.put("account", SharedPreferenceUtil.getEmail());
+
         showProgress();
-        HttpUtil.onHttpRequest(HttpUtil.url_userinfo, headers, new HashMap<>(), new OnHttpListener() {
+        HttpUtil.onHttpRequest(HttpUtil.url_userinfo, headers, params, new OnHttpListener() {
             @Override
             public void onEventCallBack(JSONObject obj, int ret) {
                 hideProgress();
-//                if (ret == 1) {
-//
-//                } else {
-//                    Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT)
-//                            .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-//                                @Override
-//                                public void onDismissed(Snackbar transientBottomBar, int event) {
-//                                    super.onDismissed(transientBottomBar, event);
-//                                    MainActivity.this.existApp();
-//                                }
-//                            }).show();
-//                }
-                Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT)
-                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                            @Override
-                            public void onDismissed(Snackbar transientBottomBar, int event) {
-                                super.onDismissed(transientBottomBar, event);
-                                MainActivity.this.existApp();
-                            }
-                        }).show();
+                if (ret == 1) {
+                    try {
+                        JSONArray aryUser = obj.getJSONArray("payload");
+                        JSONObject personJson = aryUser.getJSONObject(0);
+                        UserModel userModel = new UserModel();
+                        userModel.id = personJson.getString("MemberID");
+                        userModel.memberName = personJson.getString("MemberName");
+                        userModel.account = personJson.getString("Account");
+                        userModel.mobile = personJson.getString("Mobile");
+
+                        SharedPreferenceUtil.saveCurrentUser(userModel);
+                        onGetUserInfo.onCallback(userModel);
+                    } catch (JSONException e) {
+                        Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onEventInternetError(Exception e) {
                 hideProgress();
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT)
-                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                            @Override
-                            public void onDismissed(Snackbar transientBottomBar, int event) {
-                                super.onDismissed(transientBottomBar, event);
-                                MainActivity.this.existApp();
-                            }
-                        }).show();
+                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEventServerError(Exception e) {
                 hideProgress();
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT)
-                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                            @Override
-                            public void onDismissed(Snackbar transientBottomBar, int event) {
-                                super.onDismissed(transientBottomBar, event);
-                                MainActivity.this.existApp();
-                            }
-                        }).show();
+                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
     }

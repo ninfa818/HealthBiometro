@@ -5,21 +5,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
+import org.lab.biometro.listener.OnGetUserInfo;
+import org.lab.biometro.listener.OnHttpListener;
+import org.lab.biometro.model.UserModel;
 import org.lab.biometro.ui.LineHeartChart;
 import org.lab.biometro.ui.LineOxyChart;
 import org.lab.biometro.ui.LineTempChart;
 import org.lab.biometro.util.AppUtil;
+import org.lab.biometro.util.HttpUtil;
+import org.lab.biometro.util.SharedPreferenceUtil;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -29,6 +41,7 @@ public class HomeFragment extends Fragment {
     private LineOxyChart cht_oxy;
     private LineTempChart cht_temp;
     private ImageView img_heart, img_oxygen, img_temp;
+    private TextView lbl_name;
 
 
     public HomeFragment(MainActivity activity) {
@@ -48,6 +61,7 @@ public class HomeFragment extends Fragment {
             AppUtil.pageIndex = 2;
             activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
         });
+        activity.setOnGetUserInfo(userModel -> lbl_name.setText(userModel.memberName));
     }
 
     @Nullable
@@ -60,6 +74,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View fragment) {
+        lbl_name = fragment.findViewById(R.id.lbl_name);
+
         cht_heart = fragment.findViewById(R.id.cht_heart);
         initHeartData();
 
@@ -72,6 +88,36 @@ public class HomeFragment extends Fragment {
         img_heart = fragment.findViewById(R.id.img_heart);
         img_oxygen = fragment.findViewById(R.id.img_oxygen);
         img_temp = fragment.findViewById(R.id.img_temp);
+
+        initData();
+    }
+
+    private void initData() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + SharedPreferenceUtil.getToken());
+
+        Map<String, String> params = new HashMap<>();
+        params.put("account", SharedPreferenceUtil.getEmail());
+
+        activity.showProgress();
+        HttpUtil.onHttpRequest(HttpUtil.url_maindata, headers, params, new OnHttpListener() {
+            @Override
+            public void onEventCallBack(JSONObject obj, int ret) {
+                activity.hideProgress();
+            }
+
+            @Override
+            public void onEventInternetError(Exception e) {
+                activity.hideProgress();
+                Snackbar.make(activity.getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onEventServerError(Exception e) {
+                activity.hideProgress();
+                Snackbar.make(activity.getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initHeartData() {

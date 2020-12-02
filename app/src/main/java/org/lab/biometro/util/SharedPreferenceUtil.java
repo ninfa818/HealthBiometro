@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
+import org.lab.biometro.model.UserModel;
+
 public class SharedPreferenceUtil {
 
     private static SharedPreferences mSharedPref;
@@ -47,6 +51,14 @@ public class SharedPreferenceUtil {
 
     static public void setToken(String token) {
         mSharedPref.edit().putString("token", token).apply();
+    }
+
+    static public void saveCurrentUser(UserModel userModel) {
+        mSharedPref.edit().putString("current_user", new Gson().toJson(userModel)).apply();
+    }
+
+    static public UserModel getCurrentUser() {
+        return new Gson().fromJson(mSharedPref.getString("current_user", ""), UserModel.class);
     }
 
 }

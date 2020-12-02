@@ -27,6 +27,7 @@
                     android:src="@drawable/ic_user_circle" />
 
                 <TextView
+                    android:id="@+id/lbl_name"
                     android:layout_marginStart="15dp"
                     style="@style/NanumTextBold"
                     android:textSize="24sp"

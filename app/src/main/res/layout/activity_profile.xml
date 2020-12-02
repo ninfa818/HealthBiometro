@@ -87,6 +87,7 @@
             android:background="@drawable/btn_back_gray_6"/>
 
         <TextView
+            android:id="@+id/lbl_header_name"
             style="@style/NanumTextBold"
             android:layout_marginTop="18sp"
             android:textSize="24sp"

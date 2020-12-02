@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,12 +18,15 @@ import org.lab.biometro.activity.ProductActivity;
 import org.lab.biometro.activity.ProfileActivity;
 import org.lab.biometro.activity.RegisterActivity;
 import org.lab.biometro.activity.SettingNotiActivity;
+import org.lab.biometro.model.UserModel;
 import org.lab.biometro.util.AppUtil;
+import org.lab.biometro.util.SharedPreferenceUtil;
 
 public class SettingFragment extends Fragment {
 
     private final MainActivity activity;
     private LinearLayout llt_profile, llt_product, llt_notification;
+    private TextView lbl_name;
 
 
     public SettingFragment(MainActivity activity) {
@@ -48,6 +52,15 @@ public class SettingFragment extends Fragment {
         llt_profile = fragment.findViewById(R.id.llt_profile);
         llt_product = fragment.findViewById(R.id.llt_product);
         llt_notification = fragment.findViewById(R.id.llt_notification);
+
+        lbl_name = fragment.findViewById(R.id.lbl_name);
+        initData();
+    }
+
+    private void initData() {
+        UserModel currentUser = SharedPreferenceUtil.getCurrentUser();
+
+        lbl_name.setText(currentUser.memberName);
     }
 
 }
