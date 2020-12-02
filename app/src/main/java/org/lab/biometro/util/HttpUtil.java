@@ -50,4 +50,32 @@ public class HttpUtil {
                 });
     }
 
+    public static void onHttpRequest (String url
+            , Map<String, String> headers
+            , Map<String, String> params
+            , OnHttpListener apiResponse) {
+        OkHttpUtils.post().url(url)
+                .headers(headers)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(okhttp3.Call call, Exception e, int id) {
+                        apiResponse.onEventInternetError(e);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int ret = obj.getInt("status");
+                            apiResponse.onEventCallBack(obj, ret);
+                        } catch (JSONException e) {
+                            apiResponse.onEventServerError(e);
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
 }

@@ -9,20 +9,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.fragment.HomeFragment;
 import org.lab.biometro.fragment.MonitorFragment;
 import org.lab.biometro.fragment.SettingFragment;
+import org.lab.biometro.listener.OnGetUserInfo;
+import org.lab.biometro.listener.OnHttpListener;
 import org.lab.biometro.util.AppUtil;
+import org.lab.biometro.util.HttpUtil;
+import org.lab.biometro.util.SharedPreferenceUtil;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     public BottomNavigationView nav_bottom;
     private ImageView img_toolbar_back, img_toolbar_logo;
@@ -30,14 +39,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private TextView lbl_toolbar_title;
     private RelativeLayout rlt_toolbar_noti;
 
+    private OnGetUserInfo onGetUserInfo;
 
     private void initEvent() {
         img_toolbar_back.setOnClickListener(view -> nav_bottom.setSelectedItemId(R.id.navigation_home));
-        rlt_toolbar_noti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        rlt_toolbar_noti.setOnClickListener(view -> {
 
-            }
         });
     }
 
@@ -47,20 +54,67 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         initView();
+        initData();
         initEvent();
     }
 
-    private void initView() {
-        nav_bottom = findViewById(R.id.nav_bottom);
-        nav_bottom.setOnNavigationItemSelectedListener(this);
+    private void initData() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + SharedPreferenceUtil.getToken());
 
-        img_toolbar_back = findViewById(R.id.img_toolbar_back);
-        img_toolbar_logo = findViewById(R.id.img_toolbar_logo);
-        lbl_toolbar_title = findViewById(R.id.lbl_toolbar_title);
-        rlt_toolbar_noti = findViewById(R.id.rlt_toolbar_noti);
-        viw_toolbar_badge = findViewById(R.id.viw_toolbar_badge);
+        showProgress();
+        HttpUtil.onHttpRequest(HttpUtil.url_userinfo, headers, new HashMap<>(), new OnHttpListener() {
+            @Override
+            public void onEventCallBack(JSONObject obj, int ret) {
+                hideProgress();
+//                if (ret == 1) {
+//
+//                } else {
+//                    Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT)
+//                            .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+//                                @Override
+//                                public void onDismissed(Snackbar transientBottomBar, int event) {
+//                                    super.onDismissed(transientBottomBar, event);
+//                                    MainActivity.this.existApp();
+//                                }
+//                            }).show();
+//                }
+                Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT)
+                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
+                                MainActivity.this.existApp();
+                            }
+                        }).show();
+            }
 
-        loadFragmentByIndex(0);
+            @Override
+            public void onEventInternetError(Exception e) {
+                hideProgress();
+                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT)
+                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
+                                MainActivity.this.existApp();
+                            }
+                        }).show();
+            }
+
+            @Override
+            public void onEventServerError(Exception e) {
+                hideProgress();
+                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT)
+                        .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
+                                MainActivity.this.existApp();
+                            }
+                        }).show();
+            }
+        });
     }
 
     private void loadFragmentByIndex(int index) {
@@ -119,4 +173,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return true;
     }
 
+    @Override
+    public void initView() {
+        super.initView();
+
+        nav_bottom = findViewById(R.id.nav_bottom);
+        nav_bottom.setOnNavigationItemSelectedListener(this);
+
+        img_toolbar_back = findViewById(R.id.img_toolbar_back);
+        img_toolbar_logo = findViewById(R.id.img_toolbar_logo);
+        lbl_toolbar_title = findViewById(R.id.lbl_toolbar_title);
+        rlt_toolbar_noti = findViewById(R.id.rlt_toolbar_noti);
+        viw_toolbar_badge = findViewById(R.id.viw_toolbar_badge);
+
+        loadFragmentByIndex(0);
+    }
+
+    public void setOnGetUserInfo(OnGetUserInfo onGetUserInfo) {
+        this.onGetUserInfo = onGetUserInfo;
+    }
 }

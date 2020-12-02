@@ -3,6 +3,7 @@ package org.lab.biometro.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.dialog.AlertOneDialog;
@@ -17,6 +19,7 @@ import org.lab.biometro.listener.OnClickAlertDialogListener;
 import org.lab.biometro.listener.OnHttpListener;
 import org.lab.biometro.util.AppUtil;
 import org.lab.biometro.util.HttpUtil;
+import org.lab.biometro.util.SharedPreferenceUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private View content;
     private ProgressDialog dialog;
     private EditText txt_email, txt_pass;
+    private CheckBox chk_saved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,15 @@ public class LoginActivity extends AppCompatActivity {
 
         txt_email = findViewById(R.id.txt_email);
         txt_pass = findViewById(R.id.txt_password);
+        chk_saved = findViewById(R.id.chk_saved);
+
+        if (SharedPreferenceUtil.isSaved()) {
+            String emailStr = SharedPreferenceUtil.getEmail();
+            String passStr = SharedPreferenceUtil.getPassword();
+            txt_email.setText(emailStr);
+            txt_pass.setText(passStr);
+            chk_saved.setChecked(true);
+        }
     }
 
     public void onClickLoginButton(View view) {
@@ -66,6 +79,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onEventCallBack(JSONObject obj, int ret) {
                 dialog.dismiss();
                 if (ret == 1) {
+                    if (chk_saved.isChecked()) {
+                        SharedPreferenceUtil.setSaved(true);
+                        SharedPreferenceUtil.setEmail(email);
+                        SharedPreferenceUtil.setPassword(password);
+                    }
                     AlertOneDialog alt_success = new AlertOneDialog(LoginActivity.this
                             , getString(R.string.login_success)
                             , getString(R.string.login_success_desc)
@@ -73,6 +91,12 @@ public class LoginActivity extends AppCompatActivity {
                     alt_success.setOnClickAlertDialogListener(new OnClickAlertDialogListener() {
                         @Override
                         public void onClickConfirmButton() {
+                            try {
+                                String token = obj.getString("token");
+                                SharedPreferenceUtil.setToken(token);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                             AppUtil.showOtherActivity(LoginActivity.this, MainActivity.class, 0);
                         }
                     });
