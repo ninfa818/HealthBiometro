@@ -124,6 +124,8 @@ public class InformationFragment extends Fragment implements View.OnClickListene
                         dialog.dismiss();
                         if (ret == 1) {
                             activity.loadFragmentByIndex(3);
+                            activity.registedName = user.memberName;
+                            activity.registedEmail = user.account;
                             Snackbar.make(content, R.string.success_register, BaseTransientBottomBar.LENGTH_SHORT).show();
                         } else {
                             Snackbar.make(content, R.string.failed_register, BaseTransientBottomBar.LENGTH_SHORT).show();

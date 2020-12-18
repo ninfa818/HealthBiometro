@@ -5,12 +5,33 @@
     android:background="@color/color_back_privacy"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_margin="@dimen/dimen_txt_margin"
-        style="@style/NanumTextBold"
-        android:textSize="18sp"
-        android:textColor="@color/color_text_green"
-        android:text="2020년 09월 22일(화)"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/lbl_date"
+            android:layout_margin="@dimen/dimen_txt_margin"
+            style="@style/NanumTextBold"
+            android:textSize="18sp"
+            android:textColor="@color/color_text_green"
+            android:text="2020년 09월 22일(화)"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/img_calendar"
+            android:layout_margin="@dimen/dimen_txt_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar"
+            android:contentDescription="Calendar" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -52,6 +52,7 @@
             android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/lbl_name"
                 style="@style/NanumTextBold"
                 android:textSize="22sp"
                 android:textColor="@color/black"
@@ -74,6 +75,7 @@
             android:text="@string/complete_desc2" />
 
         <TextView
+            android:id="@+id/lbl_email"
             style="@style/NanumTextBold"
             android:layout_marginTop="8dp"
             android:layout_marginStart="40dp"

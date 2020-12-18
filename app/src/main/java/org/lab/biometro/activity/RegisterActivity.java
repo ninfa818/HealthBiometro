@@ -16,6 +16,9 @@ import org.lab.biometro.fragment.VerifyFragment;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    public String registedEmail = "";
+    public String registedName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

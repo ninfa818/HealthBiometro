@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,10 @@ public class CompleteFragment extends Fragment {
     }
 
     private void initView(View fragment) {
+        TextView lbl_email = fragment.findViewById(R.id.lbl_email);
+        lbl_email.setText(activity.registedEmail);
+        TextView lbl_name = fragment.findViewById(R.id.lbl_name);
+        lbl_name.setText(activity.registedName);
         btn_login = fragment.findViewById(R.id.btn_login);
     }
 
