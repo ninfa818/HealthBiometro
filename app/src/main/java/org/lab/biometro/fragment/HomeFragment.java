@@ -1,6 +1,7 @@
 package org.lab.biometro.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View fragment) {
+        UserModel currentUser = SharedPreferenceUtil.getCurrentUser();
+
         lbl_name = fragment.findViewById(R.id.lbl_name);
+        lbl_name.setText(currentUser.memberName);
 
         cht_heart = fragment.findViewById(R.id.cht_heart);
         initHeartData();
@@ -103,6 +107,7 @@ public class HomeFragment extends Fragment {
         HttpUtil.onHttpRequest(HttpUtil.url_maindata, headers, params, new OnHttpListener() {
             @Override
             public void onEventCallBack(JSONObject obj, int ret) {
+                Log.d("HomeFragment", obj.toString());
                 activity.hideProgress();
             }
 
