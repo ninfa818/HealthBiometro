@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_calendar"
-            android:contentDescription="Calendar" />
+            android:contentDescription="@string/calendar" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,17 +40,18 @@
         android:padding="@dimen/dimen_txt_margin">
 
         <TextView
+            android:id="@+id/lbl_temp"
             style="@style/NanumTextBold"
             android:textSize="22sp"
             android:textColor="@color/black"
-            android:text="37.2 Cº" />
+            android:text="@string/empty_temp" />
 
         <TextView
             style="@style/NanumTextLight"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
             android:textColor="@color/black"
-            android:text="오늘, 오전 0시 ~ 오후24시 까지" />
+            android:text="@string/from_to_time" />
 
         <org.lab.biometro.ui.LineTempChart
             android:id="@+id/cht_temp"

@@ -71,6 +71,7 @@ public class LineOxyChart extends View {
     private static final int POINT_OUTER_COLOR = 0xC82BBB9D;
     private static final int BOTTOM_TIP_FRAME_COLOR = 0xC82BBB9D;
     private static final int LEFT_TIP_FRAME_COLOR = 0xC82BBB9D;
+    private static final int WHITE_LINE_COLOR = 0x00FFFFFF;
 
     private static final int DEFAULT_LEVEL_NUMBER = 2;
     private static final float DEFAULT_MAX_VALUE = 500f;
@@ -362,6 +363,9 @@ public class LineOxyChart extends View {
         for (int i = 0; i < mPoints.size(); i++) {
             mPaint.setColor(POINT_OUTER_COLOR);
             mPaint.setStyle(Paint.Style.FILL);
+            if (mData.get(i).value == 90) {
+                mPaint.setColor(WHITE_LINE_COLOR);
+            }
             canvas.drawCircle(mPoints.get(i).x, mPoints.get(i).y, 8, mPaint);
         }
     }

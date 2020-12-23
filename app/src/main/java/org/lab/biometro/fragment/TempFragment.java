@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.TempAdapter;
+import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.model.TempModel;
 import org.lab.biometro.ui.LineTempChart;
 import org.lab.biometro.util.AppUtil;
@@ -36,7 +37,7 @@ public class TempFragment extends Fragment {
     private TempAdapter tempAdapter;
     private List<TempModel> models = new ArrayList<>();
 
-    private TextView lbl_date;
+    private TextView lbl_date, lbl_temp;
     private ImageView img_calendar;
 
     final Calendar myCalendar = Calendar.getInstance();
@@ -77,6 +78,8 @@ public class TempFragment extends Fragment {
                 break;
         }
         lbl_date.setText(sdf.format(myCalendar.getTime()) + " " + weekStr);
+        initListData();
+        initChartData();
     }
     
 
@@ -100,14 +103,13 @@ public class TempFragment extends Fragment {
 
     private void initView(View fragment) {
         cht_temp = fragment.findViewById(R.id.cht_temp);
-        initChartData();
 
         ListView lst_temp = fragment.findViewById(R.id.lst_temp);
         tempAdapter = new TempAdapter(activity, models);
         lst_temp.setAdapter(tempAdapter);
-        initListData();
 
         lbl_date = fragment.findViewById(R.id.lbl_date);
+        lbl_temp = fragment.findViewById(R.id.lbl_temp);
         img_calendar = fragment.findViewById(R.id.img_calendar);
         updateLabel();
         initEvent();
@@ -124,10 +126,11 @@ public class TempFragment extends Fragment {
             e.printStackTrace();
         }
 
+        List<TempModel>showModels = new ArrayList<>(TempModel.getOneShowData(myCalendar, activity.tpModels));
         final List<LineTempChart.Data<Float>> data = new LinkedList<>();
         for (int i = 0; i < 25; i++) {
-            double value = AppUtil.randomInRange(36.0f, 39.5f);
-            data.add(new LineTempChart.Data<>((float)value, String.format(Locale.getDefault(), "%d시", i)));
+            float value = showModels.get(i).value;
+            data.add(new LineTempChart.Data<>(value, String.format(Locale.getDefault(), "%d시", i)));
         }
 
         try {
@@ -137,17 +140,21 @@ public class TempFragment extends Fragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void initListData() {
         models.clear();
-
-        for (int i = 0; i < 24; i++) {
-            TempModel model = new TempModel();
-            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
-            model.value = AppUtil.randomInRange(36.0f, 39.5f);
-            models.add(model);
-        }
-
+        models.addAll(TempModel.getOneDayData(myCalendar, activity.tpModels));
         tempAdapter.notifyDataSetChanged();
+
+        float avarage = 0;
+        for (TempModel model: models) {
+            avarage += model.value;
+        }
+        if (models.size() > 0) {
+            lbl_temp.setText(String.format(Locale.getDefault(), "%.1f", avarage / models.size()) + " Cº");
+        } else {
+            lbl_temp.setText(getString(R.string.empty_percent));
+        }
     }
 
 }

@@ -32,7 +32,7 @@ public class OxygenCell extends LinearLayout {
     }
 
     private void initView() {
-        lbl_time.setText(model.time);
+        lbl_time.setText(model.create_at);
         lbl_value.setText(String.valueOf(model.value));
     }
 

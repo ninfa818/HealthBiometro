@@ -3,6 +3,7 @@ package org.lab.biometro.fragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.HeartAdapter;
 import org.lab.biometro.model.HeartModel;
 import org.lab.biometro.ui.LineHeartChart;
-import org.lab.biometro.util.AppUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,10 +34,10 @@ public class HeartFragment extends Fragment {
 
     private LineHeartChart cht_heart;
     private HeartAdapter heartAdapter;
-    private List<HeartModel> models = new ArrayList<>();
-    private TextView lbl_date;
+    private TextView lbl_date, lbl_heart;
     private ImageView img_calendar;
 
+    private final List<HeartModel> models = new ArrayList<>();
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener dateListener = (view, year, monthOfYear, dayOfMonth) -> {
         myCalendar.set(Calendar.YEAR, year);
@@ -76,6 +76,9 @@ public class HeartFragment extends Fragment {
                 break;
         }
         lbl_date.setText(sdf.format(myCalendar.getTime()) + " " + weekStr);
+
+        initListData();
+        initChartData();
     }
 
     public HeartFragment(MainActivity activity) {
@@ -98,21 +101,19 @@ public class HeartFragment extends Fragment {
 
     private void initView(View fragment) {
         cht_heart = fragment.findViewById(R.id.cht_heart);
-        initHeartData();
 
         ListView lst_heart = fragment.findViewById(R.id.lst_heart);
         heartAdapter = new HeartAdapter(activity, models);
         lst_heart.setAdapter(heartAdapter);
 
         lbl_date = fragment.findViewById(R.id.lbl_date);
+        lbl_heart = fragment.findViewById(R.id.lbl_heart);
         img_calendar = fragment.findViewById(R.id.img_calendar);
         updateLabel();
-
-        initListData();
         initEvent();
     }
 
-    private void initHeartData() {
+    private void initChartData() {
         final List<LineHeartChart.Data<String>> list = new LinkedList<>();
         for (int i = 0; i < 25; i++) {
             list.add(new LineHeartChart.Data<>(String.format(Locale.getDefault(), "%d시", i)));
@@ -123,10 +124,14 @@ public class HeartFragment extends Fragment {
             e.printStackTrace();
         }
 
+        List<HeartModel>showModels = new ArrayList<>(HeartModel.getOneShowData(myCalendar, activity.htModels));
         final List<LineHeartChart.Data<Float[]>> data = new LinkedList<>();
         for (int i = 0; i < 25; i++) {
-            int min = AppUtil.randomInRange(60, 90);
-            int max = AppUtil.randomInRange(80, 140);
+            int min = showModels.get(i).lValue;
+            int max = showModels.get(i).hValue;
+            if (min > 0) {
+                Log.d("min : max ===> ", min + " --- " + max);
+            }
             data.add(new LineHeartChart.Data<>(new Float[]{(float) min, (float) max}, String.format(Locale.getDefault(), "%d시", i), String.format(Locale.getDefault(), "%.0f", (float) (min + max))));
         }
 
@@ -139,15 +144,23 @@ public class HeartFragment extends Fragment {
 
     private void initListData() {
         models.clear();
-
-        for (int i = 0; i < 24; i++) {
-            HeartModel model = new HeartModel();
-            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
-            model.value = AppUtil.randomInRange(70, 130);
-            models.add(model);
-        }
-
+        models.addAll(HeartModel.getOneDayData(myCalendar, activity.htModels));
         heartAdapter.notifyDataSetChanged();
+
+        int min = 200, max = 0;
+        for (HeartModel model: models) {
+            if (min > model.lValue) {
+                min = model.lValue;
+            }
+            if (max < model.hValue) {
+                max = model.hValue;
+            }
+        }
+        if (models.size() > 0) {
+            lbl_heart.setText(String.format(Locale.getDefault(), "%d ~ %d bpm", min, max));
+        } else {
+            lbl_heart.setText(getString(R.string.empty_bpm));
+        }
     }
 
 }

@@ -34,7 +34,7 @@ public class TempCell extends LinearLayout {
     }
 
     private void initView() {
-        lbl_time.setText(model.time);
+        lbl_time.setText(model.create_at);
         lbl_value.setText(String.format(Locale.getDefault(), "%.1f", model.value));
     }
 

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.OxygenAdapter;
+import org.lab.biometro.model.HeartModel;
 import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.ui.LineOxyChart;
 import org.lab.biometro.util.AppUtil;
@@ -36,7 +37,7 @@ public class OxygenFragment extends Fragment {
     private OxygenAdapter oxygenAdapter;
     private List<OxygenModel> models = new ArrayList<>();
 
-    private TextView lbl_date;
+    private TextView lbl_date, lbl_oxygen;
     private ImageView img_calendar;
 
     final Calendar myCalendar = Calendar.getInstance();
@@ -77,6 +78,8 @@ public class OxygenFragment extends Fragment {
                 break;
         }
         lbl_date.setText(sdf.format(myCalendar.getTime()) + " " + weekStr);
+        initListData();
+        initChartData();
     }
 
     public OxygenFragment(MainActivity activity) {
@@ -99,15 +102,14 @@ public class OxygenFragment extends Fragment {
 
     private void initView(View fragment) {
         cht_oxy = fragment.findViewById(R.id.cht_oxy);
-        initChartData();
 
         ListView lst_oxy = fragment.findViewById(R.id.lst_oxy);
         oxygenAdapter = new OxygenAdapter(activity, models);
         lst_oxy.setAdapter(oxygenAdapter);
-        initListData();
 
         lbl_date = fragment.findViewById(R.id.lbl_date);
         img_calendar = fragment.findViewById(R.id.img_calendar);
+        lbl_oxygen = fragment.findViewById(R.id.lbl_oxygen);
         updateLabel();
         initEvent();
     }
@@ -123,9 +125,10 @@ public class OxygenFragment extends Fragment {
             e.printStackTrace();
         }
 
+        List<OxygenModel>showModels = new ArrayList<>(OxygenModel.getOneShowData(myCalendar, activity.ogModels));
         final List<LineOxyChart.Data<Float>> data = new LinkedList<>();
         for (int i = 0; i < 25; i++) {
-            int value = AppUtil.randomInRange(90, 100);
+            int value = showModels.get(i).value;
             data.add(new LineOxyChart.Data<>((float) value, String.format(Locale.getDefault(), "%d시", i)));
         }
 
@@ -136,17 +139,21 @@ public class OxygenFragment extends Fragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void initListData() {
         models.clear();
-
-        for (int i = 0; i < 24; i++) {
-            OxygenModel model = new OxygenModel();
-            model.time = String.format(Locale.getDefault(), "%02d:00:00", (23 - i));
-            model.value = AppUtil.randomInRange(90, 100);
-            models.add(model);
-        }
-
+        models.addAll(OxygenModel.getOneDayData(myCalendar, activity.ogModels));
         oxygenAdapter.notifyDataSetChanged();
+
+        int avarage = 0;
+        for (OxygenModel model: models) {
+            avarage += model.value;
+        }
+        if (models.size() > 0) {
+            lbl_oxygen.setText(String.format(Locale.getDefault(), "%d", avarage / models.size()) + " %");
+        } else {
+            lbl_oxygen.setText(getString(R.string.empty_percent));
+        }
     }
 
 

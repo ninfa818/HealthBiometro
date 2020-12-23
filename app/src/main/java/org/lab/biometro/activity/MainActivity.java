@@ -24,14 +24,18 @@ import org.lab.biometro.R;
 import org.lab.biometro.fragment.HomeFragment;
 import org.lab.biometro.fragment.MonitorFragment;
 import org.lab.biometro.fragment.SettingFragment;
-import org.lab.biometro.listener.OnGetUserInfo;
 import org.lab.biometro.listener.OnHttpListener;
+import org.lab.biometro.model.HeartModel;
+import org.lab.biometro.model.OxygenModel;
+import org.lab.biometro.model.TempModel;
 import org.lab.biometro.model.UserModel;
 import org.lab.biometro.util.AppUtil;
 import org.lab.biometro.util.HttpUtil;
 import org.lab.biometro.util.SharedPreferenceUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +46,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     private TextView lbl_toolbar_title;
     private RelativeLayout rlt_toolbar_noti;
 
-    private OnGetUserInfo onGetUserInfo;
+    public List<HeartModel> htModels = new ArrayList<>();
+    public List<OxygenModel> ogModels = new ArrayList<>();
+    public List<TempModel> tpModels = new ArrayList<>();
 
     private void initEvent() {
         img_toolbar_back.setOnClickListener(view -> nav_bottom.setSelectedItemId(R.id.navigation_home));
@@ -68,11 +74,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         Map<String, String> params = new HashMap<>();
         params.put("account", SharedPreferenceUtil.getEmail());
 
-        showProgress();
         HttpUtil.onHttpRequest(HttpUtil.url_userinfo, headers, params, new OnHttpListener() {
             @Override
             public void onEventCallBack(JSONObject obj, int ret) {
-                hideProgress();
                 if (ret == 1) {
                     try {
                         JSONArray aryUser = obj.getJSONArray("payload");
@@ -84,7 +88,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                         userModel.mobile = personJson.getString("Mobile");
 
                         SharedPreferenceUtil.saveCurrentUser(userModel);
-                        onGetUserInfo.onCallback(userModel);
+
+                        loadFragmentByIndex(0);
                     } catch (JSONException e) {
                         Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
@@ -95,13 +100,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
             @Override
             public void onEventInternetError(Exception e) {
-                hideProgress();
                 Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEventServerError(Exception e) {
-                hideProgress();
                 Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
@@ -175,11 +178,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         lbl_toolbar_title = findViewById(R.id.lbl_toolbar_title);
         rlt_toolbar_noti = findViewById(R.id.rlt_toolbar_noti);
         viw_toolbar_badge = findViewById(R.id.viw_toolbar_badge);
-
-        loadFragmentByIndex(0);
     }
 
-    public void setOnGetUserInfo(OnGetUserInfo onGetUserInfo) {
-        this.onGetUserInfo = onGetUserInfo;
-    }
 }

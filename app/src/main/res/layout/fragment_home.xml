@@ -106,6 +106,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llt_heart_data"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -132,11 +133,12 @@
                         android:src="@drawable/ic_home_heart" />
 
                     <TextView
+                        android:id="@+id/lbl_heart"
                         style="@style/NanumTextBold"
                         android:layout_marginTop="7dp"
                         android:textSize="28sp"
                         android:textColor="@color/black"
-                        android:text="107" />
+                        android:text="@string/empty_value" />
 
                     <TextView
                         style="@style/NanumTextLight"
@@ -145,6 +147,11 @@
                         android:text="bpm" />
                 </LinearLayout>
             </LinearLayout>
+
+            <include
+                android:id="@+id/llt_heart_empty"
+                layout="@layout/ui_empty"
+                android:visibility="gone"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -188,6 +195,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llt_oxygen_data"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -214,11 +222,12 @@
                         android:src="@drawable/ic_home_o2" />
 
                     <TextView
+                        android:id="@+id/lbl_oxygen"
                         style="@style/NanumTextBold"
                         android:layout_marginTop="7dp"
                         android:textSize="28sp"
                         android:textColor="@color/black"
-                        android:text="100" />
+                        android:text="@string/empty_value" />
 
                     <TextView
                         style="@style/NanumTextLight"
@@ -227,6 +236,11 @@
                         android:text="%" />
                 </LinearLayout>
             </LinearLayout>
+
+            <include
+                android:id="@+id/llt_oxygen_empty"
+                layout="@layout/ui_empty"
+                android:visibility="gone"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -271,6 +285,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llt_temp_date"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -297,11 +312,12 @@
                         android:src="@drawable/ic_home_temperature" />
 
                     <TextView
+                        android:id="@+id/lbl_temp"
                         style="@style/NanumTextBold"
                         android:layout_marginTop="7dp"
                         android:textSize="28sp"
                         android:textColor="@color/black"
-                        android:text="37.2" />
+                        android:text="@string/empty_value" />
 
                     <TextView
                         style="@style/NanumTextLight"
@@ -310,6 +326,11 @@
                         android:text="Cº" />
                 </LinearLayout>
             </LinearLayout>
+
+            <include
+                android:id="@+id/llt_temp_empty"
+                layout="@layout/ui_empty"
+                android:visibility="gone"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -10,6 +10,7 @@ import org.lab.biometro.R;
 public class AppUtil {
 
     public static int pageIndex = 0;
+    public static boolean is_demo_mode = false;
 
     public static void showOtherActivity (Context context, Class<?> cls, int direction) {
         Intent myIntent = new Intent(context, cls);

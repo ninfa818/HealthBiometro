@@ -8,11 +8,14 @@ import android.widget.TextView;
 import org.lab.biometro.R;
 import org.lab.biometro.model.HeartModel;
 
+import java.util.Locale;
+
 public class HeartCell extends LinearLayout {
 
     private HeartModel model;
 
-    private TextView lbl_time, lbl_value;
+    private final TextView lbl_time;
+    private final TextView lbl_value;
 
 
     public HeartCell(Context context) {
@@ -31,8 +34,8 @@ public class HeartCell extends LinearLayout {
     }
 
     private void initView() {
-        lbl_time.setText(model.time);
-        lbl_value.setText(String.valueOf(model.value));
+        lbl_time.setText(model.create_at);
+        lbl_value.setText(String.format(Locale.getDefault(), "%d - %d", model.lValue, model.hValue));
     }
 
 }

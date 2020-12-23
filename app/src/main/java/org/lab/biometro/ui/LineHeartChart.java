@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -71,6 +72,7 @@ public class LineHeartChart extends View {
     private static final int POINT_OUTER_COLOR = 0xC8FE2D54;
     private static final int BOTTOM_TIP_FRAME_COLOR = 0xC8FE2D54;
     private static final int LEFT_TIP_FRAME_COLOR = 0xC8FE2D54;
+    private static final int WHITE_LINE_COLOR = 0x00FFFFFF;
 
     private static final int DEFAULT_LEVEL_NUMBER = 2;
     private static final float DEFAULT_MAX_VALUE = 500f;
@@ -208,6 +210,7 @@ public class LineHeartChart extends View {
         float circleCenterX = horizontalSpaceLeft;
         float circleCenterY;
         mLPoints.clear();
+        mHPoints.clear();
         for (int i = 0; i < mData.size(); i++) {
             float currentProportionHeight = (mData.get(i).value[0] - getMinData()) * proportionHeight;
             circleCenterY = brokenLineHeight - currentProportionHeight + verticalSpaceTop;
@@ -367,12 +370,18 @@ public class LineHeartChart extends View {
         for (int i = 0; i < mLPoints.size(); i++) {
             mPaint.setColor(POINT_OUTER_COLOR);
             mPaint.setStyle(Paint.Style.FILL);
+            if (mData.get(i).value[0] == 0) {
+                mPaint.setColor(WHITE_LINE_COLOR);
+            }
             canvas.drawCircle(mLPoints.get(i).x, mLPoints.get(i).y, 8, mPaint);
             canvas.drawCircle(mHPoints.get(i).x, mHPoints.get(i).y, 8, mPaint);
 
+            mPaint.setColor(POINT_OUTER_COLOR);
             mPaint.setStrokeWidth(16);
             canvas.drawLine(mLPoints.get(i).x, mLPoints.get(i).y, mHPoints.get(i).x, mHPoints.get(i).y, mPaint);
         }
+        Log.d("mLPoints ===> ", mLPoints.toString());
+        Log.d("mHPoints ===> ", mHPoints.toString());
     }
 
     private void drawBackground(Canvas canvas) {
@@ -430,7 +439,7 @@ public class LineHeartChart extends View {
 //            return DEFAULT_MAX_VALUE;
 //        }
 //        return (float) Math.ceil(max);
-        return 150;
+        return 200;
     }
 
     // for 1.x 2.x 3.x 4.x, set min to 1
@@ -443,7 +452,7 @@ public class LineHeartChart extends View {
 //            return DEFAULT_MIN_VALUE;
 //        }
 //        return (float) Math.floor(min);
-        return 50;
+        return 30;
     }
 
 }

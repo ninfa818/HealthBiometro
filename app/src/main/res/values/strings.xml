@@ -112,4 +112,11 @@
     <string name="failed_get_user">사용자정보를 얻을수 없습니다. 잠시후 다시 시도하세요.</string>
     <string name="failed_set_safeuser">보호자정보오유. 잠시후 다시 시도하시십요.</string>
     <string name="success_set_safeuser">보호자변경 성공!!!</string>
+    <string name="empty_value">---</string>
+    <string name="no_data">측정된 데이터가 없습니다.</string>
+    <string name="empty_bpm">- ~ - bpm</string>
+    <string name="from_to_time">오전 0시 ~ 오후24시 까지</string>
+    <string name="calendar">Calendar</string>
+    <string name="empty_percent">---%</string>
+    <string name="empty_temp">--.- Cº</string>
 </resources>
