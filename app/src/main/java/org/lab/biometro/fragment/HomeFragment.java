@@ -1,6 +1,7 @@
 package org.lab.biometro.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -54,7 +56,6 @@ public class HomeFragment extends Fragment {
     private LineOxyChart cht_oxy;
     private LineTempChart cht_temp;
     private ImageView img_heart, img_oxygen, img_temp;
-    private TextView lbl_name;
     private TextView lbl_heart, lbl_oxygen, lbl_temp;
     private LinearLayout llt_heart_empty, llt_heart_data, llt_oxygen_empty, llt_oxygen_data, llt_temp_empty, llt_temp_date;
 
@@ -62,9 +63,12 @@ public class HomeFragment extends Fragment {
     private OxygenWeekModel oxygenWeekModel;
     private TempWeekModel tempWeekModel;
 
+    private final UserModel currentUser;
 
-    public HomeFragment(MainActivity activity) {
+
+    public HomeFragment(MainActivity activity, UserModel userModel) {
         this.activity = activity;
+        currentUser = userModel;
     }
 
     private void initEvent() {
@@ -104,9 +108,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View fragment) {
-        UserModel currentUser = SharedPreferenceUtil.getCurrentUser();
-
-        lbl_name = fragment.findViewById(R.id.lbl_name);
+        TextView lbl_name = fragment.findViewById(R.id.lbl_name);
         lbl_name.setText(currentUser.memberName);
 
         cht_heart = fragment.findViewById(R.id.cht_heart);
@@ -157,18 +159,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void onEventInternetError(Exception e) {
                 activity.hideProgress();
-                Snackbar.make(activity.getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(activity.getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEventServerError(Exception e) {
                 activity.hideProgress();
-                Snackbar.make(activity.getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(activity.getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
     }
 
     private void sortData(List<PayloadModel> models) {
+        Log.d("models ===> ", new Gson().toJson(models));
+
         activity.htModels.clear();
         activity.ogModels.clear();
         activity.tpModels.clear();

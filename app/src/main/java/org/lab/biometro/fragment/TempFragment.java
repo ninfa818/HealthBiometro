@@ -17,10 +17,8 @@ import androidx.fragment.app.Fragment;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.TempAdapter;
-import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.model.TempModel;
 import org.lab.biometro.ui.LineTempChart;
-import org.lab.biometro.util.AppUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class TempFragment extends Fragment {
 
     private LineTempChart cht_temp;
     private TempAdapter tempAdapter;
-    private List<TempModel> models = new ArrayList<>();
+    private final List<TempModel> models = new ArrayList<>();
 
     private TextView lbl_date, lbl_temp;
     private ImageView img_calendar;

@@ -42,8 +42,8 @@ public class AppUtil {
         return min + (int)(Math.random() * (max - min + 1));
     }
 
-    public static double randomInRange(Float min, Float max) {
-        return min + (Math.random() * (max - min + 1));
-    }
+//    public static double randomInRange(Float min, Float max) {
+//        return min + (Math.random() * (max - min + 1));
+//    }
 
 }

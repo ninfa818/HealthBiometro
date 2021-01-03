@@ -6,14 +6,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.lab.biometro.R;
-import org.lab.biometro.model.HeartModel;
 import org.lab.biometro.model.OxygenModel;
 
 public class OxygenCell extends LinearLayout {
 
     private OxygenModel model;
 
-    private TextView lbl_time, lbl_value;
+    private final TextView lbl_time;
+    private final TextView lbl_value;
 
 
     public OxygenCell(Context context) {

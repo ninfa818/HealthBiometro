@@ -17,7 +17,9 @@ public class AlertOneDialog extends Dialog {
     private final String description;
     private final String str_button;
 
-    private TextView lbl_title, lbl_desc, lbl_button;
+    private final TextView lbl_title;
+    private final TextView lbl_desc;
+    private final TextView lbl_button;
     private OnClickAlertDialogListener onClickAlertDialogListener;
 
 

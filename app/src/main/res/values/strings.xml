@@ -119,4 +119,7 @@
     <string name="calendar">Calendar</string>
     <string name="empty_percent">---%</string>
     <string name="empty_temp">--.- Cº</string>
+    <string name="information">Information</string>
+    <string name="logo">Logo</string>
+    <string name="loading">Loading</string>
 </resources>

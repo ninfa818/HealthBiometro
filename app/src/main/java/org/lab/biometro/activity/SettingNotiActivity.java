@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.lab.biometro.R;
 import org.lab.biometro.adapter.NotificationAdapter;
-import org.lab.biometro.listener.OnNotificationCellListener;
 import org.lab.biometro.model.NotificationModel;
 import org.lab.biometro.util.AppUtil;
 
@@ -22,7 +21,7 @@ public class SettingNotiActivity extends AppCompatActivity {
     private RelativeLayout rlt_toolbar_noti;
 
     private NotificationAdapter adapter;
-    private List<NotificationModel> notificationModels = new ArrayList<>();
+    private final List<NotificationModel> notificationModels = new ArrayList<>();
 
     private void initEvent() {
         img_back.setOnClickListener(view -> onBackPressed());

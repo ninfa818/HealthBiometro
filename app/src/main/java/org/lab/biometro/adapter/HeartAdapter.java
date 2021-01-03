@@ -13,8 +13,8 @@ import java.util.List;
 
 public class HeartAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<HeartModel> models;
+    private final Context context;
+    private final List<HeartModel> models;
 
 
     public HeartAdapter(Context context, List<HeartModel> models) {

@@ -9,20 +9,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HeartModel {
-    public String create_at = "2020-11-13 11:29:42";
-    public int lValue = 100;
-    public int hValue = 100;
+    public String create_at;
+    public int lValue;
+    public int hValue;
 
     public HeartModel(int lValue, int hValue, String create_at) {
         this.lValue = lValue;
         this.hValue = hValue;
         this.create_at = create_at;
-    }
-
-    public HeartModel() {
-
     }
 
     static public List<HeartModel> getOneDayData(Calendar calendar, List<HeartModel> allData) {
@@ -31,7 +28,7 @@ public class HeartModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -53,7 +50,7 @@ public class HeartModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

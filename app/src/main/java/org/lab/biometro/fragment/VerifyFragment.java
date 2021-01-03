@@ -25,15 +25,13 @@ public class VerifyFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragment = inflater.inflate(R.layout.fragment_verify, container, false);
-        initView(fragment);
+        initView();
         return fragment;
     }
 
-    private void initView(View fragment) {
+    private void initView() {
         final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            activity.loadFragmentByIndex(2);
-        }, 1500);
+        handler.postDelayed(() -> activity.loadFragmentByIndex(2), 1500);
     }
 
 }

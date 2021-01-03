@@ -21,7 +21,7 @@ public class HttpUtil {
 
     public static final String url_maindata = SERVER_URL + "auth/getMainPageData";
 
-    public static final String url_notification = SERVER_URL + "auth/getNoticeList";
+//    public static final String url_notification = SERVER_URL + "auth/getNoticeList";
 
 
     public static void onHttpRequest (String url

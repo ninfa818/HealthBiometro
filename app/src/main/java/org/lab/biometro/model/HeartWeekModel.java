@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HeartWeekModel {
 
@@ -24,7 +25,7 @@ public class HeartWeekModel {
 
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-18"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-18")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

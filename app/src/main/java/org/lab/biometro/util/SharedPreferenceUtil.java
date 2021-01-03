@@ -2,7 +2,6 @@ package org.lab.biometro.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 

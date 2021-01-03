@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -49,6 +50,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     public List<HeartModel> htModels = new ArrayList<>();
     public List<OxygenModel> ogModels = new ArrayList<>();
     public List<TempModel> tpModels = new ArrayList<>();
+
+    private final UserModel userModel = new UserModel();
 
     private void initEvent() {
         img_toolbar_back.setOnClickListener(view -> nav_bottom.setSelectedItemId(R.id.navigation_home));
@@ -81,7 +84,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                     try {
                         JSONArray aryUser = obj.getJSONArray("payload");
                         JSONObject personJson = aryUser.getJSONObject(0);
-                        UserModel userModel = new UserModel();
+
                         userModel.id = personJson.getString("MemberID");
                         userModel.memberName = personJson.getString("MemberName");
                         userModel.account = personJson.getString("Account");
@@ -91,7 +94,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
                         loadFragmentByIndex(0);
                     } catch (JSONException e) {
-                        Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                        Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 } else {
                     Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT).show();
@@ -100,12 +103,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
             @Override
             public void onEventInternetError(Exception e) {
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEventServerError(Exception e) {
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
     }
@@ -118,7 +121,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 img_toolbar_logo.setVisibility(View.VISIBLE);
                 lbl_toolbar_title.setVisibility(View.GONE);
                 viw_toolbar_badge.setVisibility(View.GONE);
-                frg = new HomeFragment(this);
+                frg = new HomeFragment(this, userModel);
                 break;
             case 1:
                 img_toolbar_back.setVisibility(View.VISIBLE);
@@ -134,7 +137,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 lbl_toolbar_title.setVisibility(View.VISIBLE);
                 lbl_toolbar_title.setText(getString(R.string.setting));
                 viw_toolbar_badge.setVisibility(View.VISIBLE);
-                frg = new SettingFragment(this);
+                frg = new SettingFragment(this, userModel);
                 break;
         }
         onLoadFragment(frg);

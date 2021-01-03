@@ -6,17 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.model.TempModel;
-import org.lab.biometro.ui.OxygenCell;
 import org.lab.biometro.ui.TempCell;
 
 import java.util.List;
 
 public class TempAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<TempModel> models;
+    private final Context context;
+    private final List<TempModel> models;
 
 
     public TempAdapter(Context context, List<TempModel> models) {

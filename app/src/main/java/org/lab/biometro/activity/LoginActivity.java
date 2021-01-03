@@ -2,6 +2,7 @@ package org.lab.biometro.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferenceUtil.setEmail(email);
                         SharedPreferenceUtil.setPassword(password);
                     }
+                    Log.d("url_login", obj.toString());
                     AlertOneDialog alt_success = new AlertOneDialog(LoginActivity.this
                             , getString(R.string.login_success)
                             , getString(R.string.login_success_desc)

@@ -3,18 +3,11 @@ package org.lab.biometro.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.lab.biometro.R;
-import org.lab.biometro.adapter.NotificationAdapter;
-import org.lab.biometro.listener.OnNotificationCellListener;
-import org.lab.biometro.model.NotificationModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NotiDetailActivity extends AppCompatActivity {
 

@@ -41,10 +41,10 @@ public class BaseActivity extends AppCompatActivity {
         dialog.dismiss();
     }
 
-    public void existApp() {
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
-    }
+//    public void existApp() {
+//        moveTaskToBack(true);
+//        android.os.Process.killProcess(android.os.Process.myPid());
+//        System.exit(1);
+//    }
 
 }

@@ -9,19 +9,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class OxygenModel {
 
-    public String create_at = "15:00:00";
-    public int value = 100;
+    public String create_at;
+    public int value;
 
     public OxygenModel(int value, String create_at) {
         this.value = value;
         this.create_at = create_at;
-    }
-
-    public OxygenModel() {
-
     }
 
     static public List<OxygenModel> getOneDayData(Calendar calendar, List<OxygenModel> allData) {
@@ -30,7 +27,7 @@ public class OxygenModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -52,7 +49,7 @@ public class OxygenModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

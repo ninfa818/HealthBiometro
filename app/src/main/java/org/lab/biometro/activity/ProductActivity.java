@@ -19,6 +19,7 @@ import org.lab.biometro.util.SharedPreferenceUtil;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ProductActivity extends BaseActivity {
 
@@ -77,13 +78,13 @@ public class ProductActivity extends BaseActivity {
                     @Override
                     public void onEventInternetError(Exception e) {
                         hideProgress();
-                        Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                        Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onEventServerError(Exception e) {
                         hideProgress();
-                        Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                        Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 });
             } else {
@@ -141,7 +142,7 @@ public class ProductActivity extends BaseActivity {
 
                         setData();
                     } catch (JSONException e) {
-                        Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                        Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 } else {
                     Snackbar.make(getContentView(), R.string.failed_get_user, BaseTransientBottomBar.LENGTH_SHORT).show();
@@ -151,13 +152,13 @@ public class ProductActivity extends BaseActivity {
             @Override
             public void onEventInternetError(Exception e) {
                 hideProgress();
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEventServerError(Exception e) {
                 hideProgress();
-                Snackbar.make(getContentView(), e.getMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
     }

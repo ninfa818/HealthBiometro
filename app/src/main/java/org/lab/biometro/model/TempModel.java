@@ -9,19 +9,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class TempModel {
 
-    public String create_at = "15:00:00";
-    public float value = 36.5f;
+    public String create_at;
+    public float value;
 
     public TempModel(float value, String create_at) {
         this.value = value;
         this.create_at = create_at;
-    }
-
-    public TempModel() {
-
     }
 
     static public List<TempModel> getOneDayData(Calendar calendar, List<TempModel> allData) {
@@ -30,7 +27,7 @@ public class TempModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -52,7 +49,7 @@ public class TempModel {
         DateFormat fullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         if (AppUtil.is_demo_mode) {
             try {
-                calendar.setTime(fullFormat.parse("2020-10-14"));
+                calendar.setTime(Objects.requireNonNull(fullFormat.parse("2020-10-14")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

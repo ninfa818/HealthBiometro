@@ -14,7 +14,7 @@ import java.util.List;
 public class NotificationAdapter extends BaseAdapter {
 
     private final Context context;
-    private List<NotificationModel> models;
+    private final List<NotificationModel> models;
 
     private OnNotificationCellListener onNotificationCellListener;
 

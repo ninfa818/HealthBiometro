@@ -17,10 +17,8 @@ import androidx.fragment.app.Fragment;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.adapter.OxygenAdapter;
-import org.lab.biometro.model.HeartModel;
 import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.ui.LineOxyChart;
-import org.lab.biometro.util.AppUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class OxygenFragment extends Fragment {
 
     private LineOxyChart cht_oxy;
     private OxygenAdapter oxygenAdapter;
-    private List<OxygenModel> models = new ArrayList<>();
+    private final List<OxygenModel> models = new ArrayList<>();
 
     private TextView lbl_date, lbl_oxygen;
     private ImageView img_calendar;

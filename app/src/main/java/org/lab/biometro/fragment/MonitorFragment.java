@@ -65,7 +65,7 @@ public class MonitorFragment extends Fragment {
                 case 2:
                     return new TempFragment(activity);
             }
-            return null;
+            return new Fragment();
         }
 
         @Override

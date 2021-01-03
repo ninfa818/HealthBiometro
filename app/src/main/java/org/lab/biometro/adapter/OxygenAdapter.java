@@ -6,17 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.lab.biometro.model.HeartModel;
 import org.lab.biometro.model.OxygenModel;
-import org.lab.biometro.ui.HeartCell;
 import org.lab.biometro.ui.OxygenCell;
 
 import java.util.List;
 
 public class OxygenAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<OxygenModel> models;
+    private final Context context;
+    private final List<OxygenModel> models;
 
 
     public OxygenAdapter(Context context, List<OxygenModel> models) {

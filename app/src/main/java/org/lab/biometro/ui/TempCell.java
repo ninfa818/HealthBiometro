@@ -6,7 +6,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.lab.biometro.R;
-import org.lab.biometro.model.OxygenModel;
 import org.lab.biometro.model.TempModel;
 
 import java.util.Locale;
@@ -15,7 +14,8 @@ public class TempCell extends LinearLayout {
 
     private TempModel model;
 
-    private TextView lbl_time, lbl_value;
+    private final TextView lbl_time;
+    private final TextView lbl_value;
 
 
     public TempCell(Context context) {
