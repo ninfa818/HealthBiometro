@@ -16,8 +16,8 @@ public class OxygenModel {
     public String create_at;
     public int value;
 
-    public OxygenModel(int value, String create_at) {
-        this.value = value;
+    public OxygenModel(double value, String create_at) {
+        this.value = (int) value;
         this.create_at = create_at;
     }
 

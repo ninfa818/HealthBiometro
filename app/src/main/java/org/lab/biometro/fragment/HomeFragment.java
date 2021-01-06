@@ -1,7 +1,6 @@
 package org.lab.biometro.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +22,10 @@ import org.json.JSONObject;
 import org.lab.biometro.R;
 import org.lab.biometro.activity.MainActivity;
 import org.lab.biometro.listener.OnHttpListener;
-import org.lab.biometro.model.HeartModel;
-import org.lab.biometro.model.HeartWeekModel;
-import org.lab.biometro.model.OxygenModel;
-import org.lab.biometro.model.OxygenWeekModel;
-import org.lab.biometro.model.PayloadModel;
-import org.lab.biometro.model.TempModel;
-import org.lab.biometro.model.TempWeekModel;
+import org.lab.biometro.model.HeartMainModel;
+import org.lab.biometro.model.OxygenMainModel;
+import org.lab.biometro.model.PayloadMainModel;
+import org.lab.biometro.model.TempMainModel;
 import org.lab.biometro.model.UserModel;
 import org.lab.biometro.ui.LineHeartChart;
 import org.lab.biometro.ui.LineOxyChart;
@@ -39,7 +35,6 @@ import org.lab.biometro.util.HttpUtil;
 import org.lab.biometro.util.SharedPreferenceUtil;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -59,9 +54,9 @@ public class HomeFragment extends Fragment {
     private TextView lbl_heart, lbl_oxygen, lbl_temp;
     private LinearLayout llt_heart_empty, llt_heart_data, llt_oxygen_empty, llt_oxygen_data, llt_temp_empty, llt_temp_date;
 
-    private HeartWeekModel heartWeekModel;
-    private OxygenWeekModel oxygenWeekModel;
-    private TempWeekModel tempWeekModel;
+    private HeartMainModel heartMainModel;
+    private OxygenMainModel oxygenMainModel;
+    private TempMainModel tempMainModel;
 
     private final UserModel currentUser;
 
@@ -73,7 +68,7 @@ public class HomeFragment extends Fragment {
 
     private void initEvent() {
         img_heart.setOnClickListener(view -> {
-            if (heartWeekModel.average > 0) {
+            if (heartMainModel.average > 0) {
                 AppUtil.pageIndex = 0;
                 activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
             } else {
@@ -81,7 +76,7 @@ public class HomeFragment extends Fragment {
             }
         });
         img_oxygen.setOnClickListener(view -> {
-            if (oxygenWeekModel.average > 0) {
+            if (oxygenMainModel.average > 0) {
                 AppUtil.pageIndex = 1;
                 activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
             } else {
@@ -89,7 +84,7 @@ public class HomeFragment extends Fragment {
             }
         });
         img_temp.setOnClickListener(view -> {
-            if (tempWeekModel.average > 0) {
+            if (tempMainModel.average > 0) {
                 AppUtil.pageIndex = 2;
                 activity.nav_bottom.setSelectedItemId(R.id.navigation_monitor);
             } else {
@@ -147,9 +142,14 @@ public class HomeFragment extends Fragment {
             public void onEventCallBack(JSONObject obj, int ret) {
                 try {
                     String payLoadArray = obj.getString("payload");
-                    Type type = new TypeToken<List<PayloadModel>>(){}.getType();
-                    List<PayloadModel> models = new Gson().fromJson(payLoadArray, type);
-                    sortData(models);
+                    Type type = new TypeToken<List<PayloadMainModel>>(){}.getType();
+                    List<PayloadMainModel> models = new Gson().fromJson(payLoadArray, type);
+
+                    Collections.sort(models, (lhs, rhs) -> (lhs.SortDate).compareTo(rhs.SortDate));
+                    initHeartData(models);
+                    initOxygenData(models);
+                    initTempData(models);
+                    
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -170,63 +170,15 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void sortData(List<PayloadModel> models) {
-        Log.d("models ===> ", new Gson().toJson(models));
-
-        activity.htModels.clear();
-        activity.ogModels.clear();
-        activity.tpModels.clear();
-
-        Collections.sort(models, (lhs, rhs) -> (lhs.CreateDate).compareTo(rhs.CreateDate));
-
-        List<List<PayloadModel>> payloadsAll = new ArrayList<>();
-        List<PayloadModel> payloadModels = new ArrayList<>();
-
-        String dateString = "";
-        for (PayloadModel model: models) {
-            if (!model.CreateDate.equals(dateString)) {
-                if (payloadModels.size() > 0) {
-                    payloadsAll.add(payloadModels);
-                }
-                payloadModels = new ArrayList<>();
-                dateString = model.CreateDate;
-            } else {
-                payloadModels.add(model);
-            }
-        }
-
-        for (List<PayloadModel> payloadModelList : payloadsAll) {
-            int htValue = 0;
-            int ogValue = 0;
-            float tpValue = 0.0f;
-            for (PayloadModel payloadModel: payloadModelList) {
-                htValue += Integer.parseInt(payloadModel.HeartRate);
-                ogValue += Integer.parseInt(payloadModel.Spo2);
-                tpValue += Integer.parseInt(payloadModel.Temperature);
-            }
-
-            HeartModel htModel = new HeartModel(htValue / payloadModelList.size(), htValue / payloadModelList.size() + AppUtil.randomInRange(40, 60), payloadModelList.get(0).CreateDate);
-            activity.htModels.add(htModel);
-            OxygenModel ogModel = new OxygenModel(ogValue / payloadModelList.size(), payloadModelList.get(0).CreateDate);
-            activity.ogModels.add(ogModel);
-            TempModel tpModel = new TempModel(tpValue / payloadModelList.size(), payloadModelList.get(0).CreateDate);
-            activity.tpModels.add(tpModel);
-        }
-
-        initHeartData();
-        initOxygenData();
-        initTempData();
-    }
-
-    private void initHeartData() {
-        heartWeekModel = new HeartWeekModel(activity.htModels);
-        if (heartWeekModel.average > 0) {
+    private void initHeartData(List<PayloadMainModel> models) {
+        heartMainModel = new HeartMainModel(models);
+        if (heartMainModel.average > 0) {
             llt_heart_data.setVisibility(View.VISIBLE);
             llt_heart_empty.setVisibility(View.GONE);
-            lbl_heart.setText(String.valueOf(heartWeekModel.average));
+            lbl_heart.setText(String.valueOf(heartMainModel.average));
 
             final List<LineHeartChart.Data<String>> list = new LinkedList<>();
-            for (String label : heartWeekModel.labels) {
+            for (String label : heartMainModel.labels) {
                 list.add(new LineHeartChart.Data<>(label));
             }
             try {
@@ -236,11 +188,11 @@ public class HomeFragment extends Fragment {
             }
 
             final List<LineHeartChart.Data<Float[]>> data = new LinkedList<>();
-            for (int i = 0; i < heartWeekModel.models.length; i++) {
+            for (int i = 0; i < heartMainModel.models.size(); i++) {
                 data.add(new LineHeartChart.Data<>(
-                        new Float[]{(float) heartWeekModel.models[i].lValue, (float) heartWeekModel.models[i].hValue},
-                        heartWeekModel.labels[i],
-                        String.format(Locale.getDefault(), "%.0f", (float)(heartWeekModel.models[i].lValue + heartWeekModel.models[i].hValue) / 2)
+                        new Float[]{(float) heartMainModel.models.get(i).lValue, (float) heartMainModel.models.get(i).hValue},
+                        heartMainModel.labels.get(i),
+                        String.format(Locale.getDefault(), "%.0f", (float)(heartMainModel.models.get(i).lValue + heartMainModel.models.get(i).hValue) / 2)
                 ));
             }
             try {
@@ -254,15 +206,15 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void initOxygenData() {
-        oxygenWeekModel = new OxygenWeekModel(activity.ogModels);
-        if (oxygenWeekModel.average > 0) {
+    private void initOxygenData(List<PayloadMainModel> models) {
+        oxygenMainModel = new OxygenMainModel(models);
+        if (oxygenMainModel.average > 0) {
             llt_oxygen_data.setVisibility(View.VISIBLE);
             llt_oxygen_empty.setVisibility(View.GONE);
-            lbl_oxygen.setText(String.valueOf(oxygenWeekModel.average));
+            lbl_oxygen.setText(String.valueOf(oxygenMainModel.average));
 
             final List<LineOxyChart.Data<String>> list = new LinkedList<>();
-            for (String label : oxygenWeekModel.labels) {
+            for (String label : oxygenMainModel.labels) {
                 list.add(new LineOxyChart.Data<>(label));
             }
             try {
@@ -272,8 +224,8 @@ public class HomeFragment extends Fragment {
             }
 
             final List<LineOxyChart.Data<Float>> data = new LinkedList<>();
-            for (int i = 0; i < oxygenWeekModel.models.length; i++) {
-                data.add(new LineOxyChart.Data<>((float)oxygenWeekModel.models[i].value, oxygenWeekModel.labels[i]));
+            for (int i = 0; i < oxygenMainModel.models.size(); i++) {
+                data.add(new LineOxyChart.Data<>((float) oxygenMainModel.models.get(i).value, oxygenMainModel.labels.get(i)));
             }
             try {
                 cht_oxy.setData(data);
@@ -286,15 +238,15 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void initTempData() {
-        tempWeekModel = new TempWeekModel(activity.tpModels);
-        if (tempWeekModel.average > 0) {
+    private void initTempData(List<PayloadMainModel> models) {
+        tempMainModel = new TempMainModel(models);
+        if (tempMainModel.average > 0) {
             llt_temp_date.setVisibility(View.VISIBLE);
             llt_temp_empty.setVisibility(View.GONE);
-            lbl_temp.setText(String.format(Locale.getDefault(), "%.1f", tempWeekModel.average));
+            lbl_temp.setText(String.format(Locale.getDefault(), "%.1f", tempMainModel.average));
 
             final List<LineTempChart.Data<String>> list = new LinkedList<>();
-            for (String label : tempWeekModel.labels) {
+            for (String label : tempMainModel.labels) {
                 list.add(new LineTempChart.Data<>(label));
             }
             try {
@@ -304,8 +256,8 @@ public class HomeFragment extends Fragment {
             }
 
             final List<LineTempChart.Data<Float>> data = new LinkedList<>();
-            for (int i = 0; i < tempWeekModel.models.length; i++) {
-                data.add(new LineTempChart.Data<>(tempWeekModel.models[i].value, tempWeekModel.labels[i]));
+            for (int i = 0; i < tempMainModel.models.size(); i++) {
+                data.add(new LineTempChart.Data<>(tempMainModel.models.get(i).value, tempMainModel.labels.get(i)));
             }
             try {
                 cht_temp.setData(data);

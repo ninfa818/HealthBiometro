@@ -16,8 +16,8 @@ public class TempModel {
     public String create_at;
     public float value;
 
-    public TempModel(float value, String create_at) {
-        this.value = value;
+    public TempModel(double value, String create_at) {
+        this.value = (float) value;
         this.create_at = create_at;
     }
 

@@ -16,9 +16,9 @@ public class HeartModel {
     public int lValue;
     public int hValue;
 
-    public HeartModel(int lValue, int hValue, String create_at) {
-        this.lValue = lValue;
-        this.hValue = hValue;
+    public HeartModel(double lValue, double hValue, String create_at) {
+        this.lValue = (int) lValue;
+        this.hValue = (int) hValue;
         this.create_at = create_at;
     }
 

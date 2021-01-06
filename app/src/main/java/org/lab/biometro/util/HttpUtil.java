@@ -1,5 +1,8 @@
 package org.lab.biometro.util;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -66,6 +69,7 @@ public class HttpUtil {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        Log.d("response", response);
                         try {
                             JSONObject obj = new JSONObject(response);
                             int ret = obj.getInt("status");
