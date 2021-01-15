@@ -46,15 +46,6 @@
                 android:textSize="11sp"
                 android:background="@drawable/btn_back_green"/>
 
-            <android.widget.Button
-                android:layout_marginTop="5dp"
-                android:layout_width="85dp"
-                android:layout_height="30dp"
-                style="@style/NotoTextLight"
-                android:textColor="@color/color_text_light_gray"
-                android:text="@string/gateway_connect"
-                android:textSize="11sp"
-                android:background="@drawable/btn_back_gray"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -64,7 +55,7 @@
         android:layout_marginStart="@dimen/dimen_txt_margin"
         android:textSize="16sp"
         android:textColor="@color/black"
-        android:text="이번주" />
+        android:text="최" />
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="10dp"
