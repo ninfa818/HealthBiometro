@@ -1,9 +1,11 @@
 package org.lab.biometro.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +55,8 @@ public class HomeFragment extends Fragment {
     private ImageView img_heart, img_oxygen, img_temp;
     private TextView lbl_heart, lbl_oxygen, lbl_temp;
     private LinearLayout llt_heart_empty, llt_heart_data, llt_oxygen_empty, llt_oxygen_data, llt_temp_empty, llt_temp_date;
+    private Button btn_band_connect;
+
 
     private HeartMainModel heartMainModel;
     private OxygenMainModel oxygenMainModel;
@@ -60,11 +64,13 @@ public class HomeFragment extends Fragment {
 
     private final UserModel currentUser;
 
-
     public HomeFragment(MainActivity activity, UserModel userModel) {
         this.activity = activity;
         currentUser = userModel;
+
     }
+
+
 
     private void initEvent() {
         img_heart.setOnClickListener(view -> {
@@ -126,6 +132,9 @@ public class HomeFragment extends Fragment {
         llt_temp_empty = fragment.findViewById(R.id.llt_temp_empty);
         llt_temp_date = fragment.findViewById(R.id.llt_temp_date);
 
+        btn_band_connect = fragment.findViewById(R.id.btn_band_connect);
+
+
         initData();
     }
 
@@ -166,6 +175,19 @@ public class HomeFragment extends Fragment {
             public void onEventServerError(Exception e) {
                 activity.hideProgress();
                 Snackbar.make(activity.getContentView(), Objects.requireNonNull(e.getMessage()), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_band_connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = null;
+                try {
+                    myIntent = new Intent(getContext(),Class.forName("no.nordicsemi.android.nrftoolbox.uart.UARTActivity"));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                startActivity(myIntent);
             }
         });
     }

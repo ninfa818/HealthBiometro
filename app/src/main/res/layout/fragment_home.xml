@@ -36,8 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+ㅎ
             <android.widget.Button
+                android:id="@+id/btn_band_connect"
                 android:layout_width="85dp"
                 android:layout_height="30dp"
                 style="@style/NotoTextLight"
@@ -55,7 +56,7 @@
         android:layout_marginStart="@dimen/dimen_txt_margin"
         android:textSize="16sp"
         android:textColor="@color/black"
-        android:text="최" />
+        android:text="최근 일주일" />
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="10dp"

@@ -23,6 +23,9 @@ public class HttpUtil {
     public static final String url_setsafe = SERVER_URL + "auth/setProtectorInfo";
 
     public static final String url_maindata = SERVER_URL + "auth/getMainPageData";
+    public static final String url_bandlogsdata = SERVER_URL + "auth/getBandLogsData";
+
+
 
 //    public static final String url_notification = SERVER_URL + "auth/getNoticeList";
 

@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                         userModel.mobile = personJson.getString("Mobile");
 
                         SharedPreferenceUtil.saveCurrentUser(userModel);
+                        SharedPreferenceUtil.setMemberID(userModel.id);
 
                         loadFragmentByIndex(0);
                     } catch (JSONException e) {

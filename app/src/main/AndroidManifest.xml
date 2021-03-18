@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.lab.biometro">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:name=".Biometro"
@@ -13,7 +15,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/Theme.Biometro">
+        android:theme="@style/Theme.Biometro"
+        tools:replace="android:name">
 
         <activity android:name=".activity.LoadingActivity"
             android:screenOrientation="portrait">

@@ -36,6 +36,14 @@ public class SharedPreferenceUtil {
         mSharedPref.edit().putString("email", email).apply();
     }
 
+    static public String getMemberID() {
+        return mSharedPref.getString("memberid", "");
+    }
+
+    static public void setMemberID(String memberid) {
+        mSharedPref.edit().putString("memberid", memberid).apply();
+    }
+
     static public String getPassword() {
         return mSharedPref.getString("password", "");
     }
